@@ -12,6 +12,7 @@ class MainMenu:
 	def run(self):
 		run = True
 
+		clock = pygame.time.Clock()
 		while run:
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
@@ -23,6 +24,8 @@ class MainMenu:
 					# TODO: init game
 
 			self.draw()
+
+			clock.tick(60)
 
 		pygame.quit()
 
