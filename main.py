@@ -12,5 +12,5 @@ if __name__ == "__main__":
 	pygame.display.set_caption ('Rise of Aizoth')
 
 	controller = Controller (WIDTH, HEIGHT, win)
-	controller.change (State.MENU)
+	controller.change (State.MENU, None)
 	controller.run ()

@@ -15,7 +15,7 @@ class Controller:
 		self.screen = None
 		self.running = True
 
-	def change(self, state):
+	def change(self, state, lvl_to_load):
 		if self.screen is not None:
 			self.screen.end ()
 
@@ -25,7 +25,7 @@ class Controller:
 
 		if state == State.GAME:
 			self.screen = Game (self.w, self.h, self.win, self)
-			self.screen.start ()
+			self.screen.start (lvl_to_load)
 
 	def quit(self):
 		self.running = False

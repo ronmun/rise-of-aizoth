@@ -33,40 +33,45 @@ class MenuUi:
         self.win.blit(self.creditos, self.creditosPos)
         self.win.blit(self.salida, self.salidaPos)
 
-    def checkPos(self, x, y):
-        self.level1Check(x, y)
-        self.level2Check(x, y)
-        self.level3Check(x, y)
-        self.opcionesCheck(x, y)
-        self.creditosCheck(x, y)
-        self.salidaCheck(x, y)
 
     def level1Check(self, x, y):
         if self.level1Pos[0] <= x <= self.level1Pos[0] + self.level1.get_width():
             if self.level1Pos[1] <= y <= self.level1Pos[1] + self.level1.get_height():
                 print("Level1")
+                return True
+        return False
 
     def level2Check(self, x, y):
         if self.level2Pos[0] <= x <= self.level2Pos[0] + self.level2.get_width():
             if self.level2Pos[1] <= y <= self.level2Pos[1] + self.level2.get_height():
                 print("Level2")
+                return True
+        return False
 
     def level3Check(self, x, y):
         if self.level3Pos[0] <= x <= self.level3Pos[0] + self.level3.get_width():
             if self.level3Pos[1] <= y <= self.level3Pos[1] + self.level3.get_height():
                 print("Level3")
+                return True
+        return False
 
     def opcionesCheck(self, x, y):
         if self.opcionesPos[0] <= x <= self.opcionesPos[0] + self.opciones.get_width():
             if self.opcionesPos[1] <= y <= self.opcionesPos[1] + self.opciones.get_height():
                 print("Opciones")
+                return True
+        return False
 
     def creditosCheck(self, x, y):
         if self.creditosPos[0] <= x <= self.creditosPos[0] + self.creditos.get_width():
             if self.creditosPos[1] <= y <= self.creditosPos[1] + self.creditos.get_height():
                 print("Creditos")
+                return True
+        return False
 
     def salidaCheck(self, x, y):
         if self.salidaPos[0] <= x <= self.salidaPos[0] + self.salida.get_width():
             if self.salidaPos[1] <= y <= self.salidaPos[1] + self.salida.get_height():
                 print("Salida")
+                return True
+        return False

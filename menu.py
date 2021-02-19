@@ -4,6 +4,7 @@ import pygame
 from state import State
 from screen import Screen
 from menu_ui import MenuUi
+from Levels.levelstate import LevelState
 
 
 class MainMenu(Screen):
@@ -29,8 +30,19 @@ class MainMenu(Screen):
             if event.type == pygame.MOUSEBUTTONUP:
                 # check if hit start btn
                 x, y = pygame.mouse.get_pos()
-                self.controller.change(State.GAME)
-                self.interface.checkPos(x, y)
+
+                if self.interface.level1Check(x, y):
+                    self.controller.change(State.GAME, LevelState.TUTORIAL)
+                elif self.interface.level2Check(x, y):
+                    self.controller.change(State.GAME, LevelState.REBELION)
+                elif self.interface.level3Check(x, y):
+                    self.controller.change(State.GAME, LevelState.ESPERANZA)
+                elif self.interface.opcionesCheck(x, y):
+                    self.controller.change(State.OPCIONES, None)
+                elif self.interface.creditosCheck(x, y):
+                    self.controller.change(State.CREDITS, None)
+                elif self.interface.salidaCheck(x, y):
+                    self.controller.quit()
 
     def draw(self):
         self.win.blit(self.bg, (0, 0))

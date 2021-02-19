@@ -18,9 +18,16 @@ class Game (Screen):
 		self.controller = controller
 		self.level = None
 
-	def start(self):
+	def start(self, lvl_to_load):
 		print ("Game state!")
-		self.change (LevelState.TUTORIAL)
+		if lvl_to_load == LevelState.TUTORIAL:
+			self.change(LevelState.TUTORIAL)
+
+		if lvl_to_load == LevelState.REBELION:
+			self.change(LevelState.REBELION)
+
+		if lvl_to_load == LevelState.ESPERANZA:
+			self.change(LevelState.ESPERANZA)
 
 	def change(self, state):
 		if self.level is not None:
