@@ -3,6 +3,8 @@ import pygame
 
 from Levels.levelstate import LevelState
 from Levels.level import Level
+from Enemies.towers import DemonTower, SkellyTower
+
 
 class Tutorial (Level):
     def __init__(self, w, h, win, game):
@@ -13,6 +15,10 @@ class Tutorial (Level):
 
     def start(self):
         print("Tutorial Starts")
+        self.enemies.append(DemonTower(100,100,False))
+        self.enemies.append(DemonTower(300,100,True))
+        self.enemies.append(DemonTower(500,100,False))
+        self.enemies.append(SkellyTower(0,0,False))
 
     def run(self):
         for event in pygame.event.get():
@@ -26,4 +32,7 @@ class Tutorial (Level):
 
     def draw(self):
         self.win.blit(self.bg, (0,0))
+        for enemy in self.enemies:
+            enemy.draw(self.win)
+            enemy.sprite_movement()
         #update not necesary bc it updates in game

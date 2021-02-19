@@ -7,6 +7,7 @@ class Level:
         self.height = h
         self.win = win
         self.bg = None
+        self.enemies = []
 
     def start(self):
         pass

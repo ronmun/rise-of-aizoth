@@ -3,6 +3,8 @@ import pygame
 
 from Levels.levelstate import LevelState
 from Levels.level import Level
+from Enemies.towers import DemonTower, SkellyTower
+
 
 class Esperanza (Level):
     def __init__(self, w, h, win, game):
