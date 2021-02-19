@@ -3,7 +3,7 @@ import pygame
 from controller import Controller
 from state import State
 
-WIDTH = 1280
+WIDTH = 960
 HEIGHT = 720
 
 if __name__ == "__main__":
