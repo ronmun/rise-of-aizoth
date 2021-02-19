@@ -10,9 +10,6 @@ from Levels.levelstate import LevelState
 class MainMenu(Screen):
     def __init__(self, w, h, win, controller):
         super().__init__(w, h, win)
-        # self.width = w
-        # self.height = h
-        # self.win = win
         self.bg = pygame.image.load(os.path.join("Assets/Sprites/Screens", "PantallaMenu.png"))
         self.bg = pygame.transform.scale(self.bg, (self.width, self.height))
         self.title = pygame.image.load(os.path.join("Assets/Sprites/Screens", "GameTitle.png")).convert_alpha()

@@ -11,10 +11,7 @@ from Levels.esperanza import Esperanza
 
 class Game (Screen):
 	def __init__(self, w, h, win, controller):
-		self.width = w
-		self.height = h
-		self.win = win
-
+		super().__init__(w, h, win)
 		self.controller = controller
 		self.level = None
 
