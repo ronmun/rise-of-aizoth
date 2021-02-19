@@ -1,25 +1,51 @@
-import os
 import pygame
+import os
 
 from screen import Screen
+from Levels.levelstate import LevelState
+
+#Level loads
+from Levels.tutorial import Tutorial
+from Levels.rebelion import Rebelion
+from Levels.esperanza import Esperanza
 
 class Game (Screen):
 	def __init__(self, w, h, win, controller):
 		self.width = w
 		self.height = h
 		self.win = win
-		self.bg = pygame.image.load (os.path.join ("Assets/Sprites/Screens", "PantallaMenu.png"))
-		self.bg = pygame.transform.scale (self.bg, (self.width, self.height))
+
 		self.controller = controller
+		self.level = None
 
 	def start(self):
 		print ("Game state!")
+		self.change (LevelState.TUTORIAL)
+
+	def change(self, state):
+		if self.level is not None:
+			self.level.end ()
+
+		if state == LevelState.TUTORIAL:
+			self.level = Tutorial (self.width, self.height, self.win, self)
+			self.level.start ()
+
+		if state == LevelState.REBELION:
+			self.level = Rebelion (self.width, self.height, self.win, self)
+			self.level.start ()
+
+		if state == LevelState.ESPERANZA:
+			self.level = Esperanza (self.width, self.height, self.win, self)
+			self.level.start ()
+
+	def quit(self):
+		self.controller.quit ()
+
 
 	def run(self):
-		for event in pygame.event.get():
-			if event.type == pygame.QUIT:
-				self.controller.quit ()
+		self.level.run()
+		self.draw()
 
 	def draw(self):
-		self.win.blit(self.bg, (0,0))
+		self.level.draw()
 		pygame.display.update()
