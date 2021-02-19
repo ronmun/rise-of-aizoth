@@ -39,7 +39,8 @@ class DemonTower (Enemy):
 				i += 1
 
 	def draw(self, win):
-		img = self.imgs[self.animation_count]
+		img = self.imgs[int(self.animation_count)]
+		self.sprite_movement()
 		win.blit(img, (self.posx, self.posy))
 
 
@@ -61,5 +62,6 @@ class SkellyTower (Enemy):
 				i += 1
 
 	def draw(self, win):
-		img = self.imgs[self.animation_count]
+		img = self.imgs[int(self.animation_count)]
+		self.sprite_movement()
 		win.blit(img, (self.posx, self.posy))

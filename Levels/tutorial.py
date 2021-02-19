@@ -34,5 +34,4 @@ class Tutorial (Level):
         self.win.blit(self.bg, (0,0))
         for enemy in self.enemies:
             enemy.draw(self.win)
-            enemy.sprite_movement()
         #update not necesary bc it updates in game
