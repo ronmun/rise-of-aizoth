@@ -6,7 +6,6 @@ from state import State
 # screens
 from menu import MainMenu
 from game import Game
-from credits import Credits
 
 class Controller:
 	def __init__(self, w, h, win):
@@ -27,10 +26,6 @@ class Controller:
 		if state == State.GAME:
 			self.screen = Game (self.w, self.h, self.win, self)
 			self.screen.start (lvl_to_load)
-
-		if state == State.CREDITS:
-			self.screen = Credits (self.w, self.h, self.win, self)
-			self.screen.start ()
 
 	def quit(self):
 		self.running = False
