@@ -6,7 +6,6 @@ from screen import Screen
 from menu_ui import MenuUi
 from Levels.levelstate import LevelState
 
-
 class MainMenu(Screen):
     def __init__(self, w, h, win, controller):
         super().__init__(w, h, win)

@@ -4,6 +4,7 @@ import pygame
 from state import State
 from screen import Screen
 
+
 class Credits(Screen):
     def __init__(self, w, h, win, controller):
         super().__init__(w, h, win)
@@ -16,26 +17,39 @@ class Credits(Screen):
 
         self.controller = controller
         self.clock = pygame.time.Clock()
+        self.salidaPos = (820, 0)
+        self.salida = pygame.image.load(os.path.join("Assets/Sprites/Screens/botones", "exit.png"))
+        self.salida = pygame.transform.scale(self.salida, (135, 58))
 
-        
+
     def start(self):
         print("Credits state!")
 
         
     def run(self):
         for event in pygame.event.get():
+            x, y = pygame.mouse.get_pos()
             if event.type == pygame.QUIT:
                 self.controller.quit()
-        e=5
-        if e == 5:
+            if self.salidaPos[0] <= x <= self.salidaPos[0] + self.salida.get_width():
+                if self.salidaPos[1] <= y <= self.salidaPos[1] + self.salida.get_height():
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        self.controller.change(State.MENU, None)
+                        print("Salida")
+        Scroll = True
+        if Scroll == True and self.rect.y>-3000:
             self.clip(self.states)
             self.rect.y -= 5
+        else:
+            self.controller.change(State.MENU,None)
         self.image = self.bg.subsurface(self.bg.get_clip())
         
     def draw(self):
         self.win.blit(self.image, self.rect)
         self.clock.tick(20)
+        self.win.blit(self.salida, self.salidaPos)
         pygame.display.update()
+       
     
     def get_frame(self, frame_set):
         self.frame += 1
@@ -49,6 +63,10 @@ class Credits(Screen):
         else:
             self.bg.set_clip(pygame.Rect(clipped_rect))
         return clipped_rect
+
+                    
+
+        
 
     
         
