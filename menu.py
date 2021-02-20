@@ -1,35 +1,39 @@
-import pygame
 import os
+import pygame
 
-class MainMenu:
-	def __init__(self, w, h, win):
-		self.width = w
-		self.height = h
-		self.win = win
-		self.bg = None
-		# self.bg = pygame.transform.scale(self.bg, (self.width, self.height))
+from state import State
+from screen import Screen
+from menu_ui import MenuUi
 
-	def run(self):
-		run = True
 
-		clock = pygame.time.Clock()
-		while run:
-			for event in pygame.event.get():
-				if event.type == pygame.QUIT:
-					run = False
+class MainMenu(Screen):
+    def __init__(self, w, h, win, controller):
+        super().__init__(w, h, win)
+        # self.width = w
+        # self.height = h
+        # self.win = win
+        self.bg = pygame.image.load(os.path.join("Assets/Sprites/Screens", "PantallaMenu.png"))
+        self.bg = pygame.transform.scale(self.bg, (self.width, self.height))
+        self.title = pygame.image.load(os.path.join("Assets/Sprites/Screens", "GameTitle.png")).convert_alpha()
+        self.controller = controller
+        self.interface = MenuUi(win)
 
-				if event.type == pygame.MOUSEBUTTONUP:
-					# check if hit start btn
-					x, y = pygame.mouse.get_pos()
-					# TODO: init game
+    def start(self):
+        print("Menu state!")
 
-			self.draw()
+    def run(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.controller.quit()
 
-			clock.tick(60)
+            if event.type == pygame.MOUSEBUTTONUP:
+                # check if hit start btn
+                x, y = pygame.mouse.get_pos()
+                self.controller.change(State.GAME)
+                self.interface.checkPos(x, y)
 
-		pygame.quit()
-
-	def draw(self):
-		# TODO: draw sprites
-		# self.win.blit(self.bg, (0,0))
-		pygame.display.update()
+    def draw(self):
+        self.win.blit(self.bg, (0, 0))
+        self.win.blit(self.title, (self.width / 2 - self.title.get_width() / 2, 50))
+        self.interface.draw()
+        pygame.display.update()
