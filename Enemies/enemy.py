@@ -20,3 +20,10 @@ class Enemy:
 
     def draw(self):
         pass
+
+    def draw_radius(self, win):
+        # draw range circle
+        surface = pygame.Surface((self.range * 4, self.range * 4), pygame.SRCALPHA, 32)
+        pygame.draw.circle(surface, (128, 128, 128, 100), (self.range, self.range), self.range, 0)
+
+        win.blit(surface, ((self.posx + 56) - self.range, (self.posy + 95) - self.range))

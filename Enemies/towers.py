@@ -28,7 +28,7 @@ class DemonTower (Enemy):
 		self.nombre = "Demon Tower"
 		self.imgs = imgs[:]
 		self.damage = 3
-		self.range = 20
+		self.range = 200
 		self.rotate()
 
 	def rotate(self):
@@ -39,6 +39,7 @@ class DemonTower (Enemy):
 				i += 1
 
 	def draw(self, win):
+		#super().draw_radius(win)
 		img = self.imgs[int(self.animation_count)]
 		self.sprite_movement()
 		win.blit(img, (self.posx, self.posy))
@@ -51,7 +52,7 @@ class SkellyTower (Enemy):
 		self.nombre = "Skelly Tower"
 		self.imgs = imgs2[:]
 		self.damage = 3
-		self.range = 20
+		self.range = 150
 		self.rotate()
 
 	def rotate(self):
@@ -62,6 +63,7 @@ class SkellyTower (Enemy):
 				i += 1
 
 	def draw(self, win):
+		#super().draw_radius(win)
 		img = self.imgs[int(self.animation_count)]
 		self.sprite_movement()
 		win.blit(img, (self.posx, self.posy))

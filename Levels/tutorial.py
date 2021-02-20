@@ -15,10 +15,10 @@ class Tutorial (Level):
 
     def start(self):
         print("Tutorial Starts")
-        self.enemies.append(DemonTower(100,100,False))
-        self.enemies.append(DemonTower(300,100,True))
-        self.enemies.append(DemonTower(500,100,False))
-        self.enemies.append(SkellyTower(0,0,False))
+        self.enemies.append(DemonTower(660, 370, False))
+        self.enemies.append(SkellyTower(300, 150, True))
+        self.enemies.append(SkellyTower(120, 370, False))
+        self.enemies.append(SkellyTower(500, 0, True))
 
     def run(self):
         for event in pygame.event.get():

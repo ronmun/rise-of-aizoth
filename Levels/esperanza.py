@@ -15,6 +15,12 @@ class Esperanza (Level):
 
     def start(self):
         print("Esperanza Starts")
+        self.enemies.append(DemonTower(300, 125, True))
+        self.enemies.append(DemonTower(550, 50, True))
+        self.enemies.append(DemonTower(500, 300, True))
+        self.enemies.append(DemonTower(700, 300, False))
+        self.enemies.append(DemonTower(500, 520, False))
+        self.enemies.append(SkellyTower(220,500, False))
 
     def run(self):
         for event in pygame.event.get():
@@ -28,4 +34,6 @@ class Esperanza (Level):
 
     def draw(self):
         self.win.blit(self.bg, (0,0))
+        for enemy in self.enemies:
+            enemy.draw(self.win)
         #update not necesary bc it updates in game

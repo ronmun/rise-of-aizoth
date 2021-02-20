@@ -15,6 +15,11 @@ class Rebelion (Level):
 
     def start(self):
         print("Rebelion Starts")
+        self.enemies.append(DemonTower(575, 345, True))
+        self.enemies.append(DemonTower(380, 80, True))
+        self.enemies.append(SkellyTower(100, 100, True))
+        self.enemies.append(SkellyTower(850, 345, True))
+        self.enemies.append(SkellyTower(400, 250, False))
 
     def run(self):
         for event in pygame.event.get():
@@ -28,4 +33,6 @@ class Rebelion (Level):
 
     def draw(self):
         self.win.blit(self.bg, (0,0))
+        for enemy in self.enemies:
+            enemy.draw(self.win)
         #update not necesary bc it updates in game
