@@ -6,6 +6,9 @@ from state import State
 # screens
 from menu import MainMenu
 from game import Game
+from credits import Credits
+
+from music import Music
 
 class Controller:
 	def __init__(self, w, h, win):
@@ -14,6 +17,8 @@ class Controller:
 		self.win = win
 		self.screen = None
 		self.running = True
+		Music()
+		Music.playMusic(self)
 
 	def change(self, state, lvl_to_load):
 		if self.screen is not None:
@@ -26,6 +31,10 @@ class Controller:
 		if state == State.GAME:
 			self.screen = Game (self.w, self.h, self.win, self)
 			self.screen.start (lvl_to_load)
+
+		if state == State.CREDITS:
+			self.screen = Credits (self.w, self.h, self.win, self)
+			self.screen.start ()
 
 	def quit(self):
 		self.running = False
