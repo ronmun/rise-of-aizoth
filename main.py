@@ -15,5 +15,5 @@ if __name__ == "__main__":
 	pygame.display.set_icon(ICON)
 
 	controller = Controller (WIDTH, HEIGHT, win)
-	controller.change (State.MENU, None)
+	controller.change (State.MENU)
 	controller.run ()
