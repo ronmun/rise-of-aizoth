@@ -7,7 +7,7 @@ class Enemy:
         self.posy = y
         self.rotation = rotated
         self.animation_count = 0
-        self.clock = pygame.time.Clock()
+        self.clock = pygame.time.Clock()    #creo que no lo necesita, verificar
 
 # modifcar la llamada de sprite movement
     def sprite_movement(self):

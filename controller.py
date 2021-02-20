@@ -38,8 +38,11 @@ class Controller:
 			self.screen.start ()
 
 		if state == State.OPCIONES and origin_state is not None:
-			self.screen = Options (self.w, self.h, self.win, self, origin_state)
+			self.screen = Options (self.w, self.h, self.win, self, self.screen)
 			self.screen.start ()
+
+	def reload_screen(self, load_screen):
+		self.screen = load_screen
 
 	def quit(self):
 		self.running = False
