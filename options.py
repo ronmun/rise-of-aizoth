@@ -54,5 +54,5 @@ class Options(Screen):
         if self.exitPos[0] <= x <= self.exitPos[0] + self.exit.get_width():
             if self.exitPos[1] <= y <= self.exitPos[1] + self.exit.get_height():
                 print("exit")
-                self.controller.change(self.State, None, None)
+                self.controller.reload_screen(self.State)
 
