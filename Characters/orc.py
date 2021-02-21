@@ -3,7 +3,7 @@ from os.path import isfile, join
 import pygame
 import os
 
-from .entity import Entity, SCALE
+from .entity import Entity, SCALE, ORC_COST
 
 ENTITY_WIDTH = 32
 ENTITY_HEIGHT = 32
@@ -21,11 +21,11 @@ for f in files:
 		)
 	)
 
-class Ogre (Entity):
+class Orc (Entity):
 	def __init__(self, pos, path):
 		super().__init__(pos, path)
-		self.name = "ogre"
-		self.money = 5
+		self.name = "orc"
+		self.cost = ORC_COST
 		self.imgs = imgs[:]
 		self.max_health = 25
 		self.health = self.max_health

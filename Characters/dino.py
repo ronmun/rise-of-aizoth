@@ -3,7 +3,7 @@ from os.path import isfile, join
 import pygame
 import os
 
-from .entity import Entity, ENTITY_WIDTH, ENTITY_HEIGHT, SCALE
+from .entity import Entity, ENTITY_WIDTH, ENTITY_HEIGHT, SCALE, DINO_COST
 
 path = os.path.join ("Assets/Sprites/Characters/Dino")
 files = [f for f in listdir (path) if isfile (join (path, f))]
@@ -22,7 +22,7 @@ class Dino (Entity):
 	def __init__(self, pos, path):
 		super().__init__(pos, path)
 		self.name = "dino"
-		self.money = 5
+		self.cost = DINO_COST
 		self.imgs = imgs[:]
 		self.max_health = 6
 		self.health = self.max_health
