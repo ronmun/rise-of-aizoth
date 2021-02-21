@@ -27,7 +27,7 @@ class DemonTower (Enemy):
 		super().__init__(pos, rotated)
 		self.nombre = "Demon Tower"
 		self.imgs = imgs[:]
-		self.damage = 3
+		self.damage = 2
 		self.range = 200
 		self.rotate()
 
@@ -50,7 +50,6 @@ class DemonTower (Enemy):
 		if len(ally_closest) > 0:
 			first_ally = ally_closest[0]
 			if int(self.shoot_count) == 5:
-				#print('hit: ', first_ally)
 				if first_ally.hit(self.damage) == True:
 					allies.remove(first_ally)
 
@@ -103,7 +102,6 @@ class SkellyTower (Enemy):
 		if len(ally_closest) > 0:
 			first_ally = ally_closest[0]
 			if int(self.shoot_count) == 5:
-				#print('hit: ', first_ally)
 				if first_ally.hit(self.damage) == True:
 					allies.remove(first_ally)
 

@@ -44,6 +44,8 @@ class Level:
     def character_movement(self):
         for c in self.characters:
             c.move()
+            if c.name == "wizard":
+                c.regen()
 
     def enemy_attacks(self):
         for e in self.enemies:

@@ -24,6 +24,20 @@ class Wizard (Entity):
 		self.name = "wizard"
 		self.money = 5
 		self.imgs = imgs[:]
-		self.max_health = 5
+		self.max_health = 8
 		self.health = self.max_health
 		self.vel = 1
+		self.regen_timer = 0
+
+	def regen(self):
+		if self.health < self.max_health and int(self.regen_timer) == 5:
+			if self.health + 2.5 > self.max_health:
+				self.health = self.max_health
+			else:
+				self.health += 2.5
+		self.regen_delay()
+
+	def regen_delay(self):
+		self.regen_timer += 0.025
+		if self.regen_timer > 5.1:
+			self.regen_timer = 0
