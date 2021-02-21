@@ -3,7 +3,6 @@ import pygame
 
 from Levels.levelstate import LevelState
 from Levels.level import Level
-from Levels.level_ui import LevelUi
 from Enemies.towers import DemonTower, SkellyTower
 from Characters.elf import Elf
 from Characters.dino import Dino

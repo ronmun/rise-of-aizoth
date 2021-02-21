@@ -3,7 +3,6 @@ import pygame
 
 from Levels.levelstate import LevelState
 from Levels.level import Level
-from Levels.level_ui import LevelUi
 from Enemies.towers import DemonTower, SkellyTower
 from Characters.elf import Elf
 from Characters.dino import Dino
@@ -16,7 +15,6 @@ class Tutorial (Level):
         self.bg = pygame.image.load(os.path.join("Assets/Sprites/Screens", "01_Tutorial.png"))
         self.bg = pygame.transform.scale(self.bg, (self.width, self.height))
         self.game = game
-        self.level_ui = LevelUi(win)
         self.start_pos = (-50, 200)
         self.end_pos = (180, 775)
 

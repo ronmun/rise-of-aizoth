@@ -1,6 +1,8 @@
 import os
 import pygame
 
+from Levels.level_ui import LevelUi
+
 class Level:
     def __init__(self, w, h, win):
         self.width = w
@@ -11,6 +13,7 @@ class Level:
         self.characters = []
         self.start_pos = ()
         self.end_pos = ()
+        self.level_ui = LevelUi(win)
 
     def start(self):
         pass
