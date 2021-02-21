@@ -25,10 +25,10 @@ class Tutorial (Level):
         self.enemies.append(SkellyTower(120, 370, False))
         self.enemies.append(SkellyTower(500, 0, True))
 
-        self.characters.append(Elf(100, 100))
-        self.characters.append(Dino(200, 200))
-        self.characters.append(Ogre(180, 200))
-        self.characters.append(Wizard(400, 400))
+        self.characters.append(Elf(-50, 200))
+        # self.characters.append(Dino(200, 200))
+        # self.characters.append(Ogre(180, 200))
+        # self.characters.append(Wizard(400, 400))
 
     def run(self):
         for event in pygame.event.get():
@@ -39,4 +39,7 @@ class Tutorial (Level):
                 # check if hit start btn
                 x, y = pygame.mouse.get_pos()
                 print(x,y)
-                self.game.change(LevelState.REBELION)
+                # self.game.change(LevelState.REBELION)
+
+        for c in self.characters:
+            c.move ()
