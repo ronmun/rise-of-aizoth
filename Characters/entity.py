@@ -86,3 +86,27 @@ class Entity:
 			else:
 				if self.x <= x2 and self.y >= y2:
 					self.path_pos += 1
+
+	def hit(self, damage):
+		"""
+		Returns if an enemy has died and removes one health
+        each call
+        :return: Bool
+        """
+		self.health -= damage
+		if self.health <= 0:
+			return True
+		return False
+
+	def draw_health_bar(self, win):
+		"""
+        draw health bar above enemy
+        :param win: surface
+        :return: None
+        """
+		length = 50
+		move_by = round(length / self.max_health)
+		health_bar = move_by * self.health
+
+		pygame.draw.rect(win, (255, 0, 0), (self.x - 30, self.y - 75, length, 10), 0)
+		pygame.draw.rect(win, (0, 255, 0), (self.x - 30, self.y - 75, health_bar, 10), 0)

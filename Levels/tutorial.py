@@ -42,5 +42,5 @@ class Tutorial (Level):
                     self.game.change(LevelState.PAUSE)
                 print(x,y)
 
-        for c in self.characters:
-            c.move ()
+        self.character_movement()
+        self.enemy_attacks()
