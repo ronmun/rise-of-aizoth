@@ -15,6 +15,7 @@ class Tutorial (Level):
         self.bg = pygame.image.load(os.path.join("Assets/Sprites/Screens", "01_Tutorial.png"))
         self.bg = pygame.transform.scale(self.bg, (self.width, self.height))
         self.game = game
+        self.gems = 100
         self.start_pos = (-50, 200)
         self.end_pos = (180, 775)
         self.path = [(-50, 200), (780, 200), (780, 560), (180, 560), (180, 775)]

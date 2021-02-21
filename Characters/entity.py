@@ -4,6 +4,10 @@ import pygame
 ENTITY_WIDTH = 16
 ENTITY_HEIGHT = 28
 SCALE = 1.75
+ORC_COST = 10
+ELF_COST = 2
+DINO_COST = 15
+WIZARD_COST = 5
 
 class Entity:
 	def __init__(self, pos, path):
