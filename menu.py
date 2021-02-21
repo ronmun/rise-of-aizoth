@@ -20,11 +20,14 @@ class MainMenu(Screen):
         self.controller = controller
         self.interface = MenuUi(win)
         self.path = [(-50, 595),(1100, 595)]
-        self.start_pos = (-50, 595)
-        self.characters = [Elf(self.start_pos, self.path),
-                           Dino(self.start_pos, self.path),
-                           Ogre(self.start_pos, self.path),
-                           Wizard(self.start_pos, self.path)]
+        self.characters = [Dino((-800, 595), self.path),
+                           Elf((-250, 595), self.path),
+                           Ogre((-575, 595), self.path),
+                           Wizard((-420, 595), self.path),
+                           Dino((1800, 595), self.path[::-1]),
+                           Elf((1470, 595), self.path[::-1]),
+                           Ogre((1525, 595), self.path[::-1]),
+                           Wizard((1325, 595), self.path[::-1])]
 
     def start(self):
         print("Menu state!")

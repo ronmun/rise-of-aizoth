@@ -26,4 +26,4 @@ class Dino (Entity):
 		self.imgs = imgs[:]
 		self.max_health = 5
 		self.health = self.max_health
-		self.vel = 5
+		self.vel = 2
