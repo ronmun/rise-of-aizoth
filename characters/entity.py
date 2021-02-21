@@ -2,17 +2,18 @@ import pygame
 
 ENTITY_WIDTH = 16
 ENTITY_HEIGHT = 28
+SCALE = 1.75
 
 class Entity:
-	def __init__(self):
+	def __init__(self, x, y):
 		self.width = ENTITY_WIDTH
 		self.height = ENTITY_HEIGHT
 		self.animation_count = 0
 		self.health = 1
 		self.vel = 3
 		self.path = []
-		self.x = 0
-		self.y = 0
+		self.x = x
+		self.y = y
 		self.img = None
 		self.dis = 0
 		self.path_pos = 0
@@ -24,9 +25,14 @@ class Entity:
 		self.speed_increase = 1.2
 
 	def draw (self, win):
-		# self.img = self.imgs[self.animation_count]
-		# win.blit (self.img, (self.x - self.img.get_width () / 2, self.y - self.img.get_height () / 2 - 35))
-		pass
+		self.img = self.imgs[int(self.animation_count)]
+		self.sprite_movement()
+		win.blit (self.img, (self.x - self.img.get_width () / 2, self.y - self.img.get_height () / 2 - 35))
+
+	def sprite_movement(self):
+		self.animation_count += 0.09
+		if self.animation_count >= len(self.imgs):
+			self.animation_count = 0
 
 	def collide (self, X, Y):
 		"""
