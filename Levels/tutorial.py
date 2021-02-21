@@ -11,7 +11,8 @@ class Tutorial (Level):
         self.bg = pygame.image.load(os.path.join("Assets/Sprites/Screens", "01_Tutorial.png"))
         self.bg = pygame.transform.scale(self.bg, (self.width, self.height))
         self.game = game
-        self.gems = 100
+        self.max_gems = 100
+        self.gems = self.max_gems
         self.start_pos = (-50, 200)
         self.end_pos = (180, 775)
         self.path = [(-50, 200), (780, 200), (780, 560), (180, 560), (180, 775)]
@@ -35,9 +36,18 @@ class Tutorial (Level):
                 x, y = pygame.mouse.get_pos()
                 if self.level_ui.pauseCheck(x, y):
                     self.game.change(LevelState.PAUSE)
-                print(x,y)
+                print(x, y)
 
                 self.check_character_buy(x, y)
+
+                if self.level_ui.won:
+                    if self.level_ui.nextCheck(x, y):
+                        self.game.change(LevelState.REBELION)
+
+                if self.level_ui.lost:
+                    if self.level_ui.retryCheck(x, y):
+                        self.game.change(LevelState.TUTORIAL)
+
 
         self.character_movement()
         self.enemy_attacks()
