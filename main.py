@@ -4,7 +4,7 @@ import os
 from controller import Controller
 from state import State
 
-WIDTH = 960
+WIDTH = 1080
 HEIGHT = 720
 ICON = pygame.image.load(os.path.join("Assets/Sprites", "Icon.png"))
 

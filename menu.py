@@ -6,6 +6,11 @@ from screen import Screen
 from menu_ui import MenuUi
 from Levels.levelstate import LevelState
 
+from Characters.elf import Elf
+from Characters.dino import Dino
+from Characters.ogre import Ogre
+from Characters.wizard import Wizard
+
 class MainMenu(Screen):
     def __init__(self, w, h, win, controller):
         super().__init__(w, h, win)
@@ -14,6 +19,12 @@ class MainMenu(Screen):
         self.title = pygame.image.load(os.path.join("Assets/Sprites/Screens", "GameTitle.png")).convert_alpha()
         self.controller = controller
         self.interface = MenuUi(win)
+        self.path = [(-50, 595),(1100, 595)]
+        self.start_pos = (-50, 595)
+        self.characters = [Elf(self.start_pos, self.path),
+                           Dino(self.start_pos, self.path),
+                           Ogre(self.start_pos, self.path),
+                           Wizard(self.start_pos, self.path)]
 
     def start(self):
         print("Menu state!")
@@ -26,6 +37,7 @@ class MainMenu(Screen):
             if event.type == pygame.MOUSEBUTTONUP:
                 # check if hit start btn
                 x, y = pygame.mouse.get_pos()
+                print(x, y)
 
                 if self.interface.level1Check(x, y):
                     self.controller.change(State.GAME, None, LevelState.TUTORIAL)
@@ -43,5 +55,8 @@ class MainMenu(Screen):
     def draw(self):
         self.win.blit(self.bg, (0, 0))
         self.win.blit(self.title, (self.width / 2 - self.title.get_width() / 2, 50))
+        for ally in self.characters:
+            ally.move()
+            ally.draw(self.win)
         self.interface.draw()
         pygame.display.update()

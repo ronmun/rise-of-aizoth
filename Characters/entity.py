@@ -50,9 +50,15 @@ class Entity:
 	def move (self):
 		self.sprite_movement ()
 
-		x1, y1 = self.path[self.path_pos]
+		try:
+			x1, y1 = self.path[self.path_pos]
+		except:
+			self.path_pos = 0
+			x1, y1 = self.path[self.path_pos]
+		#print(x1, y1)
+		print(self.path_pos)
 		if self.path_pos + 1 >= len (self.path):
-			x2, y2 = (0,0 )
+			x2, y2 = self.path[0]
 		else:
 			x2, y2 = self.path[self.path_pos + 1]
 
@@ -69,7 +75,7 @@ class Entity:
 
 		self.x = move_x
 		self.y = move_y
-
+		#print(dirn)
 		# Go to next point
 		if dirn[0] >= 0: # moving right
 			if dirn[1] >= 0: # moving down
