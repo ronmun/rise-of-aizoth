@@ -5,3 +5,4 @@ class State (Enum):
 	GAME = 2
 	OPCIONES = 3
 	CREDITS = 4
+	PAUSE = 5
