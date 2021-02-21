@@ -1,4 +1,3 @@
-import os
 import pygame
 
 from state import State
@@ -8,7 +7,6 @@ from menu import MainMenu
 from game import Game
 from credits import Credits
 from options import Options
-from pause import Pause
 
 from music import Music
 
@@ -40,10 +38,6 @@ class Controller:
 
 		if state == State.OPCIONES and origin_state is not None:
 			self.screen = Options (self.w, self.h, self.win, self, self.screen)
-			self.screen.start ()
-
-		if state == State.PAUSE and origin_state is not None:
-			self.screen = Pause (self.w, self.h, self.win, self, self.screen)
 			self.screen.start ()
 
 	def reload_screen(self, load_screen):

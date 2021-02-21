@@ -24,6 +24,7 @@ class Level:
             enemy.draw(self.win)
         for ally in self.characters:
             ally.draw(self.win)
+        self.level_ui.draw()
         # update not necesary bc it updates in game
 
     def end(self):
