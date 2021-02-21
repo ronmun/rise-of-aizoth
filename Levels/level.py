@@ -2,6 +2,10 @@ import os
 import pygame
 
 from Levels.level_ui import LevelUi
+from Characters.elf import Elf
+from Characters.dino import Dino
+from Characters.ogre import Ogre
+from Characters.wizard import Wizard
 
 class Level:
     def __init__(self, w, h, win):
@@ -20,6 +24,16 @@ class Level:
 
     def run(self):
         pass
+
+    def check_character_buy(self, x, y):
+        if self.level_ui.elfCheck(x, y):
+            self.characters.append(Elf(self.start_pos, self.path))
+        if self.level_ui.dinoCheck(x, y):
+            self.characters.append(Dino(self.start_pos, self.path))
+        if self.level_ui.orcCheck(x, y):
+            self.characters.append(Ogre(self.start_pos, self.path))
+        if self.level_ui.wizardCheck(x, y):
+            self.characters.append(Wizard(self.start_pos, self.path))
 
     def character_movement(self):
         for c in self.characters:

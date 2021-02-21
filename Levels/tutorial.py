@@ -43,5 +43,7 @@ class Tutorial (Level):
                     self.game.change(LevelState.PAUSE)
                 print(x,y)
 
+                self.check_character_buy(x, y)
+
         self.character_movement()
         self.enemy_attacks()
