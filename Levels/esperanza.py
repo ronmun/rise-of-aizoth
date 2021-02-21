@@ -29,7 +29,7 @@ class Esperanza (Level):
         self.enemies.append(DemonTower((500, 520), False))
         self.enemies.append(SkellyTower((220,500), False))
 
-        self.characters.append(Dino(self.start_pos))
+        self.characters.append(Dino(self.start_pos, self.path))
 
     def run(self):
         for event in pygame.event.get():

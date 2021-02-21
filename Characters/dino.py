@@ -19,8 +19,8 @@ for f in files:
 	)
 
 class Dino (Entity):
-	def __init__(self, pos):
-		super().__init__(pos)
+	def __init__(self, pos, path):
+		super().__init__(pos, path)
 		self.name = "dino"
 		self.money = 5
 		self.imgs = imgs[:]

@@ -22,8 +22,8 @@ for f in files:
 	)
 
 class Ogre (Entity):
-	def __init__(self, pos):
-		super().__init__(pos)
+	def __init__(self, pos, path):
+		super().__init__(pos, path)
 		self.name = "ogre"
 		self.money = 5
 		self.imgs = imgs[:]

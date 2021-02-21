@@ -6,13 +6,13 @@ ENTITY_HEIGHT = 28
 SCALE = 1.75
 
 class Entity:
-	def __init__(self, pos):
+	def __init__(self, pos, path):
 		self.width = ENTITY_WIDTH
 		self.height = ENTITY_HEIGHT
 		self.animation_count = 0
 		self.health = 1
 		self.vel = 1
-		self.path = [(-50, 200), (780, 200), (780, 560), (180, 560), (180, 775)]
+		self.path = path
 		self.x = pos[0]
 		self.y = pos[1]
 		self.img = None

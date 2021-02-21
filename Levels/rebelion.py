@@ -28,7 +28,7 @@ class Rebelion (Level):
         self.enemies.append(SkellyTower((850, 345), True))
         self.enemies.append(SkellyTower((400, 250), False))
 
-        self.characters.append(Dino(self.start_pos))
+        self.characters.append(Dino(self.start_pos, self.path))
 
     def run(self):
         for event in pygame.event.get():
