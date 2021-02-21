@@ -18,9 +18,9 @@ class Pause(Screen):
         self.controller = controller
         self.win = win
         self.Level = level
-        self.reanudarPos = (390, 168)
-        self.opcionesPos = (390, 296)
-        self.menuPos = (390, 424)
+        self.reanudarPos = (450, 168)
+        self.opcionesPos = (450, 296)
+        self.menuPos = (450, 424)
 
         self.reanudar = REANUDAR
         self.opciones = OPCIONES
