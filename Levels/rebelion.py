@@ -16,16 +16,19 @@ class Rebelion (Level):
         self.bg = pygame.image.load(os.path.join("Assets/Sprites/Screens", "02_Rebelion.png"))
         self.bg = pygame.transform.scale(self.bg, (self.width, self.height))
         self.game = game
-        self.start_pos = (-50, 150)
-        self.end_pos = (850, 780)
+        self.start_pos = (-50, 140)
+        self.end_pos = (850, 800)
+        self.path = [(-50, 140), (370, 140), (370, 260), (565, 260), (565, 520), (850, 520), (850, 800)]
 
     def start(self):
         print("Rebelion Starts")
-        self.enemies.append(DemonTower(575, 345, True))
-        self.enemies.append(DemonTower(380, 80, True))
-        self.enemies.append(SkellyTower(100, 100, True))
-        self.enemies.append(SkellyTower(850, 345, True))
-        self.enemies.append(SkellyTower(400, 250, False))
+        self.enemies.append(DemonTower((575, 345), True))
+        self.enemies.append(DemonTower((380, 80), True))
+        self.enemies.append(SkellyTower((100, 100), True))
+        self.enemies.append(SkellyTower((850, 345), True))
+        self.enemies.append(SkellyTower((400, 250), False))
+
+        self.characters.append(Dino(self.start_pos))
 
     def run(self):
         for event in pygame.event.get():
@@ -39,5 +42,5 @@ class Rebelion (Level):
                     self.game.change(LevelState.PAUSE)
                 print(x, y)
 
-            for c in self.characters:
-                c.move()
+        self.character_movement()
+        self.enemy_attacks()
