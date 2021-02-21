@@ -23,10 +23,10 @@ class MainMenu(Screen):
         self.characters = [Dino((-800, 595), self.path),
                            Elf((-250, 595), self.path),
                            Ogre((-575, 595), self.path),
-                           Wizard((-420, 595), self.path),
-                           Dino((1800, 595), self.path[::-1]),
-                           Elf((1470, 595), self.path[::-1]),
-                           Ogre((1525, 595), self.path[::-1]),
+                           Wizard((-620, 595), self.path),
+                           Dino((2000, 595), self.path[::-1]),
+                           Elf((1670, 595), self.path[::-1]),
+                           Ogre((1425, 595), self.path[::-1]),
                            Wizard((1325, 595), self.path[::-1])]
 
     def start(self):
