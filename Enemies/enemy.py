@@ -4,9 +4,9 @@ OFFSETX = 56
 OFFSETY = 95
 
 class Enemy:
-    def __init__(self, x, y, rotated):
-        self.posx = x
-        self.posy = y
+    def __init__(self, pos, rotated):
+        self.posx = pos[0]
+        self.posy = pos[1]
         self.rotation = rotated
         self.animation_count = 0
         self.shoot_count = 0

@@ -23,8 +23,8 @@ for i in sprites2:
 	imgs2.append(pygame.transform.scale(pygame.image.load (os.path.join (path2, i)),(112, 140)))
 
 class DemonTower (Enemy):
-	def __init__(self, x, y, rotated):
-		super().__init__(x, y, rotated)
+	def __init__(self, pos, rotated):
+		super().__init__(pos, rotated)
 		self.nombre = "Demon Tower"
 		self.imgs = imgs[:]
 		self.damage = 3
@@ -72,8 +72,8 @@ class DemonTower (Enemy):
 
 
 class SkellyTower (Enemy):
-	def __init__(self, x, y, rotated):
-		super().__init__(x, y, rotated)
+	def __init__(self, pos, rotated):
+		super().__init__(pos, rotated)
 		self.nombre = "Skelly Tower"
 		self.imgs = imgs2[:]
 		self.damage = 1

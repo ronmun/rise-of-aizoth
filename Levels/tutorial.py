@@ -20,15 +20,15 @@ class Tutorial (Level):
 
     def start(self):
         print("Tutorial Starts")
-        self.enemies.append(DemonTower(660, 370, False))
-        self.enemies.append(SkellyTower(300, 150, True))
-        self.enemies.append(SkellyTower(120, 370, False))
-        self.enemies.append(SkellyTower(500, 0, True))
+        self.enemies.append(DemonTower((660, 370), False))
+        self.enemies.append(SkellyTower((300, 150), True))
+        self.enemies.append(SkellyTower((120, 370), False))
+        self.enemies.append(SkellyTower((500, 0), True))
 
-        self.characters.append(Elf(-50, 200))
-        self.characters.append(Dino(-50, 200))
-        self.characters.append(Ogre(-50, 200))
-        self.characters.append(Wizard(-50, 200))
+        self.characters.append(Elf(self.start_pos))
+        self.characters.append(Dino(self.start_pos))
+        self.characters.append(Ogre(self.start_pos))
+        self.characters.append(Wizard(self.start_pos))
 
     def run(self):
         for event in pygame.event.get():
