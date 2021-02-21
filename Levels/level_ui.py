@@ -17,3 +17,23 @@ class LevelUi:
             if self.pausePos[1] <= y <= self.pausePos[1] + self.pause.get_height():
                 print("Pausa")
                 return True
+
+    def elfCheck(self, x, y):
+        if 957 <= x <= 1068:
+            if 196 <= y <= 308:
+                return True
+
+    def dinoCheck(self, x, y):
+        if 957 <= x <= 1068:
+            if 330 <= y <= 445:
+                return True
+
+    def orcCheck(self, x, y):
+        if 957 <= x <= 1068:
+            if 467 <= y <= 580:
+                return True
+
+    def wizardCheck(self, x, y):
+        if 957 <= x <= 1068:
+            if 600 <= y <= 709:
+                return True

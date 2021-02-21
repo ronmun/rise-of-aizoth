@@ -38,9 +38,12 @@ class DemonTower (Enemy):
 			x = ally.x
 			y = ally.y
 
-			dis = math.sqrt(((self.posx + OFFSETX) - ally.img.get_width()/2 - x)**2 + ((self.posy + OFFSETY) - ally.img.get_height()/2 - y)**2)
-			if dis < self.range:
-				ally_closest.append(ally)
+			try:
+				dis = math.sqrt(((self.posx + OFFSETX) - ally.img.get_width()/2 - x)**2 + ((self.posy + OFFSETY) - ally.img.get_height()/2 - y)**2)
+				if dis < self.range:
+					ally_closest.append(ally)
+			except:
+				pass
 
 		ally_closest.sort(key=lambda x: x.path_pos)
 		ally_closest = ally_closest[::-1]
@@ -87,10 +90,13 @@ class SkellyTower (Enemy):
 			x = ally.x
 			y = ally.y
 
-			dis = math.sqrt(((self.posx + OFFSETX) - ally.img.get_width() / 2 - x) ** 2 + (
-						(self.posy + OFFSETY) - ally.img.get_height() / 2 - y) ** 2)
-			if dis < self.range:
-				ally_closest.append(ally)
+			try:
+				dis = math.sqrt(((self.posx + OFFSETX) - ally.img.get_width() / 2 - x) ** 2 + (
+							(self.posy + OFFSETY) - ally.img.get_height() / 2 - y) ** 2)
+				if dis < self.range:
+					ally_closest.append(ally)
+			except:
+				pass
 
 		ally_closest.sort(key=lambda x: x.path_pos)
 		ally_closest = ally_closest[::-1]
