@@ -4,25 +4,28 @@ import os
 from screen import Screen
 from state import State
 
+REANUDAR = pygame.transform.scale(pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "reanudar.png")), (180, 78))
+OPCIONES = pygame.transform.scale(pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "opciones.png")), (180, 78))
+MENU = pygame.transform.scale(pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "menu.png")), (180, 78))
+BG = pygame.image.load(os.path.join("Assets/Sprites/Screens", "PantallaMenu.png"))
+
 class Pause(Screen):
-    def __init__(self, w, h, win, controller, State):
+    def __init__(self, w, h, win, controller, game, level):
         super().__init__(w, h, win)
-        self.bg = pygame.image.load(os.path.join("Assets/Sprites/Screens", "PantallaMenu.png"))
+        self.bg = BG
         self.bg = pygame.transform.scale(self.bg, (self.width, self.height))
+        self.game = game
         self.controller = controller
         self.win = win
-        self.State = State
+        self.Level = level
         self.reanudarPos = (390, 168)
         self.opcionesPos = (390, 296)
         self.menuPos = (390, 424)
 
-        self.reanudar = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "reanudar.png"))
-        self.opciones = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "opciones.png"))
-        self.menu = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "menu.png"))
+        self.reanudar = REANUDAR
+        self.opciones = OPCIONES
+        self.menu = MENU
 
-        self.reanudar = pygame.transform.scale(self.reanudar, (180, 78))
-        self.opciones = pygame.transform.scale(self.opciones, (180, 78))
-        self.menu = pygame.transform.scale(self.menu, (180, 78))
 
     def draw(self):
         self.win.blit(self.bg, (0, 0))
@@ -42,7 +45,7 @@ class Pause(Screen):
     def reanudarCheck(self, x, y):
         if self.reanudarPos[0] <= x <= self.reanudarPos[0] + self.reanudar.get_width():
             if self.reanudarPos[1] <= y <= self.reanudarPos[1] + self.reanudar.get_height():
-                self.controller.reload_screen(self.State)
+                self.game.reload_level(self.Level)
 
     def opcionesCheck(self, x, y):
         if self.opcionesPos[0] <= x <= self.opcionesPos[0] + self.opciones.get_width():
