@@ -20,10 +20,10 @@ class Level:
 
     def draw(self):
         self.win.blit(self.bg, (0, 0))
-        for ally in self.characters:
-            ally.draw(self.win)
         for enemy in self.enemies:
             enemy.draw(self.win)
+        for ally in self.characters:
+            ally.draw(self.win)
         # update not necesary bc it updates in game
 
     def end(self):
