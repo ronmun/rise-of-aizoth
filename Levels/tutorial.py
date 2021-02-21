@@ -38,10 +38,9 @@ class Tutorial (Level):
             if event.type == pygame.MOUSEBUTTONUP:
                 # check if hit start btn
                 x, y = pygame.mouse.get_pos()
-                #self.game.change(LevelState.REBELION)
                 if self.level_ui.pauseCheck(x, y):
                     self.game.change(LevelState.PAUSE)
                 print(x,y)
-                # self.game.change(LevelState.REBELION)
+
         for c in self.characters:
             c.move ()

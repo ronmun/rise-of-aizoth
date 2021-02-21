@@ -36,5 +36,9 @@ class Esperanza (Level):
             if event.type == pygame.MOUSEBUTTONUP:
                 # check if hit start btn
                 x, y = pygame.mouse.get_pos()
+                if self.level_ui.pauseCheck(x, y):
+                    self.game.change(LevelState.PAUSE)
                 print(x, y)
-                self.game.change(LevelState.TUTORIAL)
+
+            for c in self.characters:
+                c.move()
