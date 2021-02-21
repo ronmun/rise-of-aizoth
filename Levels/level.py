@@ -41,6 +41,9 @@ class Level:
             self.characters.append(Wizard(self.start_pos, self.path))
             self.gems -= WIZARD_COST
 
+    def initial_troop(self):
+        self.characters.append(Elf(self.start_pos, self.path))
+
     def character_movement(self):
         for c in self.characters:
             c.move()

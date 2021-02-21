@@ -4,10 +4,6 @@ import pygame
 from Levels.levelstate import LevelState
 from Levels.level import Level
 from Enemies.towers import DemonTower, SkellyTower
-from Characters.elf import Elf
-from Characters.dino import Dino
-from Characters.ogre import Ogre
-from Characters.wizard import Wizard
 
 class Tutorial (Level):
     def __init__(self, w, h, win, game):
@@ -27,10 +23,7 @@ class Tutorial (Level):
         self.enemies.append(SkellyTower((120, 370), False))
         self.enemies.append(SkellyTower((500, 0), True))
 
-        self.characters.append(Elf(self.start_pos, self.path))
-        self.characters.append(Dino(self.start_pos, self.path))
-        self.characters.append(Ogre(self.start_pos, self.path))
-        self.characters.append(Wizard(self.start_pos, self.path))
+        self.initial_troop()
 
     def run(self):
         for event in pygame.event.get():

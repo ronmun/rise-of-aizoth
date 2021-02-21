@@ -4,11 +4,6 @@ import pygame
 from Levels.levelstate import LevelState
 from Levels.level import Level
 from Enemies.towers import DemonTower, SkellyTower
-from Characters.elf import Elf
-from Characters.dino import Dino
-from Characters.ogre import Ogre
-from Characters.wizard import Wizard
-
 
 class Esperanza (Level):
     def __init__(self, w, h, win, game):
@@ -16,6 +11,7 @@ class Esperanza (Level):
         self.bg = pygame.image.load(os.path.join("Assets/Sprites/Screens", "03_Esperanza.png"))
         self.bg = pygame.transform.scale(self.bg, (self.width, self.height))
         self.game = game
+        self.gems = 200
         self.start_pos = (-50, 150)
         self.end_pos = (-30, 650)
         self.path = [(-50, 140), (490, 140), (490, 310), (850, 310), (850, 530), (330, 530), (330, 670), (230, 670), (230, 645), (-50, 645)]
@@ -29,7 +25,7 @@ class Esperanza (Level):
         self.enemies.append(DemonTower((500, 520), False))
         self.enemies.append(SkellyTower((220,500), False))
 
-        self.characters.append(Dino(self.start_pos, self.path))
+        self.initial_troop()
 
     def run(self):
         for event in pygame.event.get():

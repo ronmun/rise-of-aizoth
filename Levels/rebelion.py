@@ -4,10 +4,6 @@ import pygame
 from Levels.levelstate import LevelState
 from Levels.level import Level
 from Enemies.towers import DemonTower, SkellyTower
-from Characters.elf import Elf
-from Characters.dino import Dino
-from Characters.ogre import Ogre
-from Characters.wizard import Wizard
 
 
 class Rebelion (Level):
@@ -16,6 +12,7 @@ class Rebelion (Level):
         self.bg = pygame.image.load(os.path.join("Assets/Sprites/Screens", "02_Rebelion.png"))
         self.bg = pygame.transform.scale(self.bg, (self.width, self.height))
         self.game = game
+        self.gems = 300
         self.start_pos = (-50, 140)
         self.end_pos = (850, 800)
         self.path = [(-50, 140), (370, 140), (370, 260), (565, 260), (565, 520), (850, 520), (850, 800)]
@@ -28,7 +25,7 @@ class Rebelion (Level):
         self.enemies.append(SkellyTower((850, 345), True))
         self.enemies.append(SkellyTower((400, 250), False))
 
-        self.characters.append(Dino(self.start_pos, self.path))
+        self.initial_troop()
 
     def run(self):
         for event in pygame.event.get():
