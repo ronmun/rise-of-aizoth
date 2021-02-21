@@ -1,5 +1,7 @@
 import pygame
 
+OFFSETX = 56
+OFFSETY = 95
 
 class Enemy:
     def __init__(self, x, y, rotated):
@@ -26,9 +28,9 @@ class Enemy:
         surface = pygame.Surface((self.range * 4, self.range * 4), pygame.SRCALPHA, 32)
         pygame.draw.circle(surface, (128, 128, 128, 100), (self.range, self.range), self.range, 0)
 
-        win.blit(surface, ((self.posx + 56) - self.range, (self.posy + 95) - self.range))
+        win.blit(surface, ((self.posx + OFFSETX) - self.range, (self.posy + OFFSETY) - self.range))
 
     def shoot_delay(self):
-        self.shoot_count += 0.1
+        self.shoot_count += 0.25
         if self.shoot_count > 5:
             self.shoot_count = 0
