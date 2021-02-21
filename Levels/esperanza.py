@@ -18,15 +18,18 @@ class Esperanza (Level):
         self.game = game
         self.start_pos = (-50, 150)
         self.end_pos = (-30, 650)
+        self.path = [(-50, 140), (490, 140), (490, 310), (850, 310), (850, 530), (330, 530), (330, 670), (230, 670), (230, 645), (-50, 645)]
 
     def start(self):
         print("Esperanza Starts")
-        self.enemies.append(DemonTower(300, 125, True))
-        self.enemies.append(DemonTower(550, 50, True))
-        self.enemies.append(DemonTower(500, 300, True))
-        self.enemies.append(DemonTower(700, 300, False))
-        self.enemies.append(DemonTower(500, 520, False))
-        self.enemies.append(SkellyTower(220,500, False))
+        self.enemies.append(DemonTower((300, 125), True))
+        self.enemies.append(DemonTower((550, 50), True))
+        self.enemies.append(DemonTower((500, 300), True))
+        self.enemies.append(DemonTower((700, 300), False))
+        self.enemies.append(DemonTower((500, 520), False))
+        self.enemies.append(SkellyTower((220,500), False))
+
+        self.characters.append(Dino(self.start_pos))
 
     def run(self):
         for event in pygame.event.get():
@@ -40,5 +43,5 @@ class Esperanza (Level):
                     self.game.change(LevelState.PAUSE)
                 print(x, y)
 
-            for c in self.characters:
-                c.move()
+        self.character_movement()
+        self.enemy_attacks()
