@@ -1,8 +1,8 @@
 import pygame
-import os
 
 from screen import Screen
 from Levels.levelstate import LevelState
+from Levels.pause import Pause
 
 #Level loads
 from Levels.tutorial import Tutorial
@@ -41,6 +41,13 @@ class Game (Screen):
 		if state == LevelState.ESPERANZA:
 			self.level = Esperanza (self.width, self.height, self.win, self)
 			self.level.start ()
+
+		if state == LevelState.PAUSE:
+			self.level = Pause (self.width, self.height, self.win, self.controller, self, self.level)
+			self.level.start()
+
+	def reload_level(self, load_level):
+		self.level = load_level
 
 	def quit(self):
 		self.controller.quit ()

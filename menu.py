@@ -28,15 +28,15 @@ class MainMenu(Screen):
                 x, y = pygame.mouse.get_pos()
 
                 if self.interface.level1Check(x, y):
-                    self.controller.change(State.GAME, LevelState.TUTORIAL)
+                    self.controller.change(State.GAME, None, LevelState.TUTORIAL)
                 elif self.interface.level2Check(x, y):
-                    self.controller.change(State.GAME, LevelState.REBELION)
+                    self.controller.change(State.GAME, None, LevelState.REBELION)
                 elif self.interface.level3Check(x, y):
-                    self.controller.change(State.GAME, LevelState.ESPERANZA)
+                    self.controller.change(State.GAME, None, LevelState.ESPERANZA)
                 elif self.interface.opcionesCheck(x, y):
-                    self.controller.change(State.OPCIONES, None)
+                    self.controller.change(State.OPCIONES, State.MENU)
                 elif self.interface.creditosCheck(x, y):
-                    self.controller.change(State.CREDITS, None)
+                    self.controller.change(State.CREDITS)
                 elif self.interface.salidaCheck(x, y):
                     self.controller.quit()
 

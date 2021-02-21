@@ -7,7 +7,7 @@ class Enemy:
         self.posy = y
         self.rotation = rotated
         self.animation_count = 0
-        self.clock = pygame.time.Clock()
+        self.shoot_count = 0
 
 # modifcar la llamada de sprite movement
     def sprite_movement(self):
@@ -27,3 +27,8 @@ class Enemy:
         pygame.draw.circle(surface, (128, 128, 128, 100), (self.range, self.range), self.range, 0)
 
         win.blit(surface, ((self.posx + 56) - self.range, (self.posy + 95) - self.range))
+
+    def shoot_delay(self):
+        self.shoot_count += 0.1
+        if self.shoot_count > 5:
+            self.shoot_count = 0

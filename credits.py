@@ -34,7 +34,7 @@ class Credits(Screen):
             if self.salidaPos[0] <= x <= self.salidaPos[0] + self.salida.get_width():
                 if self.salidaPos[1] <= y <= self.salidaPos[1] + self.salida.get_height():
                     if event.type == pygame.MOUSEBUTTONDOWN:
-                        self.controller.change(State.MENU, None)
+                        self.controller.change(State.MENU)
                         print("Salida")
         Scroll = True
         if Scroll == True and self.rect.y>-3000:
