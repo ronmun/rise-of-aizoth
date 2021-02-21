@@ -28,6 +28,7 @@ class Entity:
 		self.flipped = False
 		self.max_health = 0
 		self.speed_increase = 1.2
+		self.arrived = False
 
 	def draw (self, win):
 		self.img = self.imgs[int(self.animation_count)]
@@ -69,6 +70,7 @@ class Entity:
 
 		if self.path_pos + 1 >= len (self.path):
 			x2, y2 = self.path[0]
+			self.arrived = True
 		else:
 			x2, y2 = self.path[self.path_pos + 1]
 

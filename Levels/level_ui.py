@@ -1,6 +1,10 @@
 import pygame
 import os
 
+RETRY = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "retry.png"))
+PAUSE = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "pausa.png"))
+NEXT = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "next.png"))
+
 from Characters.entity import ORC_COST, ELF_COST, DINO_COST, WIZARD_COST
 POSX_DOBLE_DIGITO = 1029
 POSX_UN_DIGITO = 1040
@@ -13,9 +17,18 @@ class LevelUi:
         self.dinoTextPos = (POSX_DOBLE_DIGITO, 330)
         self.orcTextPos = (POSX_DOBLE_DIGITO, 467)
         self.wizardTextPos = (POSX_UN_DIGITO, 600)
-        self.pause = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "pausa.png"))
+        self.loseTextPos = (320, 200)
+        self.winTextPos = (320, 200)
+        self.lost = False
+        self.won = False
+        self.pause = PAUSE
         self.pause = pygame.transform.scale(self.pause, (120, 52))
+        self.retry = RETRY
+        self.retry = pygame.transform.scale(self.retry, (120, 52))
+        self.next = NEXT
+        self.next = pygame.transform.scale(self.next, (120, 52))
         self.font = pygame.font.Font(os.path.join("Assets/Fonts","m3x6.ttf"),80)
+        self.messageFont = pygame.font.Font(os.path.join("Assets/Fonts","m3x6.ttf"),180)
         self.win = win
 
     def draw(self, gems):
@@ -30,6 +43,15 @@ class LevelUi:
         self.win.blit(dino_text, self.dinoTextPos)
         self.win.blit(wizzard_text, self.wizardTextPos)
         self.win.blit(elf_text, self.elfTextPos)
+
+        if self.won:
+            win_text = self.messageFont.render("YOU WON!", True, (255, 246, 0))
+            self.win.blit(win_text, self.winTextPos)
+            self.win.blit(self.next, self.loseTextPos)
+        if self.lost:
+            lose_text = self.messageFont.render("YOU LOST", True, (255, 32, 53))
+            self.win.blit(lose_text, self.loseTextPos)
+            self.win.blit(self.retry, self.loseTextPos)
 
     def pauseCheck(self, x, y):
         if self.pausePos[0] <= x <= self.pausePos[0] + self.pause.get_width():

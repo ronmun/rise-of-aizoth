@@ -41,3 +41,5 @@ class Tutorial (Level):
 
         self.character_movement()
         self.enemy_attacks()
+        self.check_win()
+        self.check_lose()
