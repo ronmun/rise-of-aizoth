@@ -137,4 +137,4 @@ class SkellyTower (Enemy):
 		win.blit(img, (self.posx, self.posy))
 		if self.particles_ON:
 			self.particles.add_particles((self.posx + OFFSETX, self.posy + OFFSETY-15))
-			self.particles.emit(win,pygame.Color('Purple'))
+			self.particles.emit(win,(214,74,255))
