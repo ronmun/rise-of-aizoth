@@ -6,6 +6,7 @@ from os.path import isfile, join
 import pygame
 
 from Enemies.enemy import Enemy, OFFSETX, OFFSETY
+from Enemies.particles import AttackParticle
 
 path = os.path.join ("Assets/Sprites/Characters/DemonTower")
 sprites = [f for f in listdir (path) if isfile (join (path, f))]
@@ -27,9 +28,10 @@ class DemonTower (Enemy):
 		super().__init__(pos, rotated)
 		self.nombre = "Demon Tower"
 		self.imgs = imgs[:]
-		self.damage = 3
+		self.damage = 2
 		self.range = 200
 		self.rotate()
+		self.particles = AttackParticle()
 
 	def attack(self, allies):
 
@@ -38,18 +40,24 @@ class DemonTower (Enemy):
 			x = ally.x
 			y = ally.y
 
-			dis = math.sqrt(((self.posx + OFFSETX) - ally.img.get_width()/2 - x)**2 + ((self.posy + OFFSETY) - ally.img.get_height()/2 - y)**2)
-			if dis < self.range:
-				ally_closest.append(ally)
+			try:
+				dis = math.sqrt(((self.posx + OFFSETX) - ally.img.get_width()/2 - x)**2 + ((self.posy + OFFSETY) - ally.img.get_height()/2 - y)**2)
+				if dis < self.range:
+					ally_closest.append(ally)
+			except:
+				pass
 
 		ally_closest.sort(key=lambda x: x.path_pos)
 		ally_closest = ally_closest[::-1]
 		if len(ally_closest) > 0:
 			first_ally = ally_closest[0]
 			if int(self.shoot_count) == 5:
-				#print('hit: ', first_ally)
+				self.particles_ON = True
 				if first_ally.hit(self.damage) == True:
 					allies.remove(first_ally)
+
+		if self.particles_ON and int(self.shoot_count) == 4:
+			self.particles_ON = False
 
 			"""
 			Aqui se puede hacer un flip, preguntando si la x de ally pasó la x + mitad de al torre
@@ -68,6 +76,9 @@ class DemonTower (Enemy):
 		img = self.imgs[int(self.animation_count)]
 		self.sprite_movement()
 		win.blit(img, (self.posx, self.posy))
+		if self.particles_ON:
+			self.particles.add_particles((self.posx + OFFSETX, self.posy + OFFSETY-15))
+			self.particles.emit(win,pygame.Color('Yellow'))
 
 
 
@@ -79,6 +90,7 @@ class SkellyTower (Enemy):
 		self.damage = 1
 		self.range = 150
 		self.rotate()
+		self.particles = AttackParticle()
 
 	def attack(self, allies):
 
@@ -87,20 +99,25 @@ class SkellyTower (Enemy):
 			x = ally.x
 			y = ally.y
 
-			dis = math.sqrt(((self.posx + OFFSETX) - ally.img.get_width() / 2 - x) ** 2 + (
-						(self.posy + OFFSETY) - ally.img.get_height() / 2 - y) ** 2)
-			if dis < self.range:
-				ally_closest.append(ally)
+			try:
+				dis = math.sqrt(((self.posx + OFFSETX) - ally.img.get_width() / 2 - x) ** 2 + (
+							(self.posy + OFFSETY) - ally.img.get_height() / 2 - y) ** 2)
+				if dis < self.range:
+					ally_closest.append(ally)
+			except:
+				pass
 
 		ally_closest.sort(key=lambda x: x.path_pos)
 		ally_closest = ally_closest[::-1]
 		if len(ally_closest) > 0:
 			first_ally = ally_closest[0]
 			if int(self.shoot_count) == 5:
-				#print('hit: ', first_ally)
+				self.particles_ON = True
 				if first_ally.hit(self.damage) == True:
 					allies.remove(first_ally)
 
+		if self.particles_ON and int(self.shoot_count) == 4:
+			self.particles_ON = False
 			"""
 			Aqui se puede hacer un flip, preguntando si la x de ally pasó la x + mitad de al torre
 			"""
@@ -118,3 +135,6 @@ class SkellyTower (Enemy):
 		img = self.imgs[int(self.animation_count)]
 		self.sprite_movement()
 		win.blit(img, (self.posx, self.posy))
+		if self.particles_ON:
+			self.particles.add_particles((self.posx + OFFSETX, self.posy + OFFSETY-15))
+			self.particles.emit(win,(214,74,255))

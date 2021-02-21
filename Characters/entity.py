@@ -4,6 +4,10 @@ import pygame
 ENTITY_WIDTH = 16
 ENTITY_HEIGHT = 28
 SCALE = 1.75
+ORC_COST = 10
+ELF_COST = 2
+DINO_COST = 15
+WIZARD_COST = 5
 
 class Entity:
 	def __init__(self, pos, path):
@@ -47,12 +51,24 @@ class Entity:
 				return True
 		return False
 
+	def flip(self):
+		for x, img in enumerate(self.imgs):
+			self.imgs[x] = pygame.transform.flip(img, True, False)
+
+
 	def move (self):
 		self.sprite_movement ()
 
-		x1, y1 = self.path[self.path_pos]
+		if self.path_pos + 1 > len(self.path):
+			if self.path_pos == len(self.path):
+				self.path_pos = 0
+			x1, y1 = self.path[self.path_pos]
+		else:
+			x1, y1 = self.path[self.path_pos]
+
+
 		if self.path_pos + 1 >= len (self.path):
-			x2, y2 = (0,0 )
+			x2, y2 = self.path[0]
 		else:
 			x2, y2 = self.path[self.path_pos + 1]
 
@@ -62,14 +78,16 @@ class Entity:
 
 		if dirn[0] < 0 and not(self.flipped):
 			self.flipped = True
-			for x, img in enumerate(self.imgs):
-				self.imgs[x] = pygame.transform.flip(img, True, False)
+			self.flip()
+
+		if dirn[0] > 0 and self.flipped:
+			self.flipped = False
+			self.flip()
 
 		move_x, move_y = ((self.x + dirn[0]*self.vel), (self.y + dirn[1]*self.vel))
 
 		self.x = move_x
 		self.y = move_y
-
 		# Go to next point
 		if dirn[0] >= 0: # moving right
 			if dirn[1] >= 0: # moving down

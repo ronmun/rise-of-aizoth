@@ -13,9 +13,9 @@ class Options(Screen):
         self.controller = controller
         self.win = win
         self.State = State
-        self.musicOnPos = (390, 168)
-        self.musicOffPos = (390, 296)
-        self.exitPos = (390, 424)
+        self.musicOnPos = (450, 168)
+        self.musicOffPos = (450, 296)
+        self.exitPos = (450, 424)
 
         self.musicOn = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "musica_on.png"))
         self.musicOff = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "music_off.png"))

@@ -9,23 +9,21 @@ class Credits(Screen):
     def __init__(self, w, h, win, controller):
         super().__init__(w, h, win)
         self.bg = pygame.image.load(os.path.join("Assets/Sprites/Screens", "CreditsBg.png"))
-        self.bg.set_clip(pygame.Rect(0, 0, 1024, 760))
+        self.bg.set_clip(pygame.Rect(0, 0, 1080, 720))
         self.image = self.bg.subsurface(self.bg.get_clip())
         self.rect = self.image.get_rect()
         self.frame = 0
-        self.states = { 0: (0, 0, 1024, 3828) }
+        self.states = {0: (0, 0, 1080, 5464 - 720)}
 
         self.controller = controller
         self.clock = pygame.time.Clock()
-        self.salidaPos = (820, 0)
+        self.salidaPos = (940, 0)
         self.salida = pygame.image.load(os.path.join("Assets/Sprites/Screens/botones", "exit.png"))
         self.salida = pygame.transform.scale(self.salida, (135, 58))
-
 
     def start(self):
         print("Credits state!")
 
-        
     def run(self):
         for event in pygame.event.get():
             x, y = pygame.mouse.get_pos()
@@ -37,20 +35,19 @@ class Credits(Screen):
                         self.controller.change(State.MENU)
                         print("Salida")
         Scroll = True
-        if Scroll == True and self.rect.y>-3000:
+        if Scroll == True and self.rect.y > -4000:
             self.clip(self.states)
             self.rect.y -= 5
         else:
-            self.controller.change(State.MENU,None)
+            self.controller.change(State.MENU, None)
         self.image = self.bg.subsurface(self.bg.get_clip())
-        
+
     def draw(self):
         self.win.blit(self.image, self.rect)
         self.clock.tick(20)
         self.win.blit(self.salida, self.salidaPos)
         pygame.display.update()
-       
-    
+
     def get_frame(self, frame_set):
         self.frame += 1
         if self.frame > (len(frame_set) - 1):
@@ -63,10 +60,3 @@ class Credits(Screen):
         else:
             self.bg.set_clip(pygame.Rect(clipped_rect))
         return clipped_rect
-
-                    
-
-        
-
-    
-        

@@ -24,6 +24,6 @@ class Elf (Entity):
 		self.name = "elf"
 		self.money = 5
 		self.imgs = imgs[:]
-		self.max_health = 5
+		self.max_health = 12
 		self.health = self.max_health
 		self.vel = 1.25

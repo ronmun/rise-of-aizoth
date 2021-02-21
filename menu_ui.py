@@ -5,12 +5,12 @@ import os
 class MenuUi:
     def __init__(self, win):
         self.win = win
-        self.level1Pos = (390, 300)
-        self.level2Pos = (390, 403)
-        self.level3Pos = (390, 506)
-        self.opcionesPos = (390, 609)
+        self.level1Pos = (450, 300)
+        self.level2Pos = (450, 403)
+        self.level3Pos = (450, 506)
+        self.opcionesPos = (450, 609)
         self.creditosPos = (50, 609)
-        self.salidaPos = (730, 609)
+        self.salidaPos = (850, 609)
         self.level1 = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "Nivel_1.png"))
         self.level2 = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "Nivel_2.png"))
         self.level3 = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "Nivel_3.png"))

@@ -10,6 +10,7 @@ class Enemy:
         self.rotation = rotated
         self.animation_count = 0
         self.shoot_count = 0
+        self.particles_ON = False
 
 # modifcar la llamada de sprite movement
     def sprite_movement(self):

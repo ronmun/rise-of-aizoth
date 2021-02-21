@@ -27,6 +27,6 @@ class Ogre (Entity):
 		self.name = "ogre"
 		self.money = 5
 		self.imgs = imgs[:]
-		self.max_health = 5
+		self.max_health = 25
 		self.health = self.max_health
-		self.vel = 0.75
+		self.vel = 1
