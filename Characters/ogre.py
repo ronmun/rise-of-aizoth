@@ -29,4 +29,4 @@ class Ogre (Entity):
 		self.imgs = imgs[:]
 		self.max_health = 25
 		self.health = self.max_health
-		self.vel = 0.75
+		self.vel = 1

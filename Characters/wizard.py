@@ -26,7 +26,7 @@ class Wizard (Entity):
 		self.imgs = imgs[:]
 		self.max_health = 8
 		self.health = self.max_health
-		self.vel = 1
+		self.vel = 1.25
 		self.regen_timer = 0
 
 	def regen(self):
