@@ -34,6 +34,8 @@ class Options(Screen):
 
     def run(self):
         for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.controller.quit()
             if event.type == pygame.MOUSEBUTTONUP:
                 x, y = pygame.mouse.get_pos()
                 self.musicOnCheck(x, y)
