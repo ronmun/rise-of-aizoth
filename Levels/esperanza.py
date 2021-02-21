@@ -3,7 +3,6 @@ import pygame
 
 from Levels.levelstate import LevelState
 from Levels.level import Level
-from Levels.level_ui import LevelUi
 from Enemies.towers import DemonTower, SkellyTower
 from Characters.elf import Elf
 from Characters.dino import Dino
@@ -19,15 +18,18 @@ class Esperanza (Level):
         self.game = game
         self.start_pos = (-50, 150)
         self.end_pos = (-30, 650)
+        self.path = [(-50, 140), (490, 140), (490, 310), (850, 310), (850, 530), (330, 530), (330, 670), (230, 670), (230, 645), (-50, 645)]
 
     def start(self):
         print("Esperanza Starts")
-        self.enemies.append(DemonTower(300, 125, True))
-        self.enemies.append(DemonTower(550, 50, True))
-        self.enemies.append(DemonTower(500, 300, True))
-        self.enemies.append(DemonTower(700, 300, False))
-        self.enemies.append(DemonTower(500, 520, False))
-        self.enemies.append(SkellyTower(220,500, False))
+        self.enemies.append(DemonTower((300, 125), True))
+        self.enemies.append(DemonTower((550, 50), True))
+        self.enemies.append(DemonTower((500, 300), True))
+        self.enemies.append(DemonTower((700, 300), False))
+        self.enemies.append(DemonTower((500, 520), False))
+        self.enemies.append(SkellyTower((220,500), False))
+
+        self.characters.append(Dino(self.start_pos, self.path))
 
     def run(self):
         for event in pygame.event.get():
@@ -37,5 +39,9 @@ class Esperanza (Level):
             if event.type == pygame.MOUSEBUTTONUP:
                 # check if hit start btn
                 x, y = pygame.mouse.get_pos()
+                if self.level_ui.pauseCheck(x, y):
+                    self.game.change(LevelState.PAUSE)
                 print(x, y)
-                self.game.change(LevelState.TUTORIAL)
+
+        self.character_movement()
+        self.enemy_attacks()

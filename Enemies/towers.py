@@ -5,7 +5,7 @@ from os import listdir
 from os.path import isfile, join
 import pygame
 
-from Enemies.enemy import Enemy
+from Enemies.enemy import Enemy, OFFSETX, OFFSETY
 
 path = os.path.join ("Assets/Sprites/Characters/DemonTower")
 sprites = [f for f in listdir (path) if isfile (join (path, f))]
@@ -23,8 +23,8 @@ for i in sprites2:
 	imgs2.append(pygame.transform.scale(pygame.image.load (os.path.join (path2, i)),(112, 140)))
 
 class DemonTower (Enemy):
-	def __init__(self, x, y, rotated):
-		super().__init__(x, y, rotated)
+	def __init__(self, pos, rotated):
+		super().__init__(pos, rotated)
 		self.nombre = "Demon Tower"
 		self.imgs = imgs[:]
 		self.damage = 3
@@ -38,7 +38,7 @@ class DemonTower (Enemy):
 			x = ally.x
 			y = ally.y
 
-			dis = math.sqrt((self.posx - ally.img.get_width()/2 - x)**2 + (self.posy - ally.img.get_height()/2 - y)**2)
+			dis = math.sqrt(((self.posx + OFFSETX) - ally.img.get_width()/2 - x)**2 + ((self.posy + OFFSETY) - ally.img.get_height()/2 - y)**2)
 			if dis < self.range:
 				ally_closest.append(ally)
 
@@ -46,7 +46,8 @@ class DemonTower (Enemy):
 		ally_closest = ally_closest[::-1]
 		if len(ally_closest) > 0:
 			first_ally = ally_closest[0]
-			if self.shoot_count == 5:
+			if int(self.shoot_count) == 5:
+				#print('hit: ', first_ally)
 				if first_ally.hit(self.damage) == True:
 					allies.remove(first_ally)
 
@@ -71,11 +72,11 @@ class DemonTower (Enemy):
 
 
 class SkellyTower (Enemy):
-	def __init__(self, x, y, rotated):
-		super().__init__(x, y, rotated)
+	def __init__(self, pos, rotated):
+		super().__init__(pos, rotated)
 		self.nombre = "Skelly Tower"
 		self.imgs = imgs2[:]
-		self.damage = 3
+		self.damage = 1
 		self.range = 150
 		self.rotate()
 
@@ -86,7 +87,8 @@ class SkellyTower (Enemy):
 			x = ally.x
 			y = ally.y
 
-			dis = math.sqrt((self.posx - ally.img.get_width()/2 - x)**2 + (self.posy - ally.img.get_height()/2 - y)**2)
+			dis = math.sqrt(((self.posx + OFFSETX) - ally.img.get_width() / 2 - x) ** 2 + (
+						(self.posy + OFFSETY) - ally.img.get_height() / 2 - y) ** 2)
 			if dis < self.range:
 				ally_closest.append(ally)
 
@@ -94,7 +96,8 @@ class SkellyTower (Enemy):
 		ally_closest = ally_closest[::-1]
 		if len(ally_closest) > 0:
 			first_ally = ally_closest[0]
-			if self.shoot_count == 5:
+			if int(self.shoot_count) == 5:
+				#print('hit: ', first_ally)
 				if first_ally.hit(self.damage) == True:
 					allies.remove(first_ally)
 

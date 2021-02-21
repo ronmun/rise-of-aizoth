@@ -36,6 +36,8 @@ class Pause(Screen):
 
     def run(self):
         for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.controller.quit()
             if event.type == pygame.MOUSEBUTTONUP:
                 x, y = pygame.mouse.get_pos()
                 self.reanudarCheck(x, y)
