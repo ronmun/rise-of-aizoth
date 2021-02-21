@@ -4,6 +4,10 @@ import pygame
 from Levels.levelstate import LevelState
 from Levels.level import Level
 from Enemies.towers import DemonTower, SkellyTower
+from Characters.elf import Elf
+from Characters.dino import Dino
+from Characters.ogre import Ogre
+from Characters.wizard import Wizard
 
 
 class Esperanza (Level):
@@ -12,6 +16,8 @@ class Esperanza (Level):
         self.bg = pygame.image.load(os.path.join("Assets/Sprites/Screens", "03_Esperanza.png"))
         self.bg = pygame.transform.scale(self.bg, (self.width, self.height))
         self.game = game
+        self.start_pos = (-50, 150)
+        self.end_pos = (-30, 650)
 
     def start(self):
         print("Esperanza Starts")
@@ -30,10 +36,5 @@ class Esperanza (Level):
             if event.type == pygame.MOUSEBUTTONUP:
                 # check if hit start btn
                 x, y = pygame.mouse.get_pos()
+                print(x, y)
                 self.game.change(LevelState.TUTORIAL)
-
-    def draw(self):
-        self.win.blit(self.bg, (0,0))
-        for enemy in self.enemies:
-            enemy.draw(self.win)
-        #update not necesary bc it updates in game

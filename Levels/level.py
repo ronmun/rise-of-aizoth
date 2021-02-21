@@ -8,6 +8,9 @@ class Level:
         self.win = win
         self.bg = None
         self.enemies = []
+        self.characters = []
+        self.start_pos = ()
+        self.end_pos = ()
 
     def start(self):
         pass
@@ -16,7 +19,12 @@ class Level:
         pass
 
     def draw(self):
-        pass
+        self.win.blit(self.bg, (0, 0))
+        for enemy in self.enemies:
+            enemy.draw(self.win)
+        for ally in self.characters:
+            ally.draw(self.win)
+        # update not necesary bc it updates in game
 
     def end(self):
         pass

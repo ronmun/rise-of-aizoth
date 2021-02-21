@@ -19,8 +19,8 @@ class Controller:
 		self.win = win
 		self.screen = None
 		self.running = True
-		Music()
-		Music.playMusic(self)
+		self.music = Music ()
+		self.music.play ()
 
 	def change(self, state, origin_state = None, lvl_to_load = None):
 		if self.screen is not None:

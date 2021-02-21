@@ -4,8 +4,12 @@ import sys, inspect
 
 from Levels.levelstate import LevelState
 from Levels.level import Level
-from Enemies.towers import DemonTower, SkellyTower
 from Levels.level_ui import LevelUi
+from Enemies.towers import DemonTower, SkellyTower
+from Characters.elf import Elf
+from Characters.dino import Dino
+from Characters.ogre import Ogre
+from Characters.wizard import Wizard
 
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 parentdir = os.path.dirname(currentdir)
@@ -20,6 +24,8 @@ class Tutorial (Level):
         self.bg = pygame.transform.scale(self.bg, (self.width, self.height))
         self.game = game
         self.level_ui = LevelUi(win)
+        self.start_pos = (-50, 200)
+        self.end_pos = (180, 775)
 
     def start(self):
         print("Tutorial Starts")
@@ -27,6 +33,11 @@ class Tutorial (Level):
         self.enemies.append(SkellyTower(300, 150, True))
         self.enemies.append(SkellyTower(120, 370, False))
         self.enemies.append(SkellyTower(500, 0, True))
+
+        self.characters.append(Elf(-50, 200))
+        # self.characters.append(Dino(200, 200))
+        # self.characters.append(Ogre(180, 200))
+        # self.characters.append(Wizard(400, 400))
 
     def run(self):
         for event in pygame.event.get():
@@ -39,11 +50,7 @@ class Tutorial (Level):
                 #self.game.change(LevelState.REBELION)
                 if self.level_ui.pauseCheck(x, y):
                     self.game.controller.change(State.PAUSE, self)
-
-
-    def draw(self):
-        self.win.blit(self.bg, (0,0))
-        self.level_ui.draw()
-        for enemy in self.enemies:
-            enemy.draw(self.win)
-        #update not necesary bc it updates in game
+                print(x,y)
+                # self.game.change(LevelState.REBELION)
+        for c in self.characters:
+            c.move ()

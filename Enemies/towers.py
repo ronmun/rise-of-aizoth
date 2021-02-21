@@ -31,6 +31,29 @@ class DemonTower (Enemy):
 		self.range = 200
 		self.rotate()
 
+	def attack(self, allies):
+
+		ally_closest = []
+		for ally in allies:
+			x = ally.x
+			y = ally.y
+
+			dis = math.sqrt((self.posx - ally.img.get_width()/2 - x)**2 + (self.posy - ally.img.get_height()/2 - y)**2)
+			if dis < self.range:
+				ally_closest.append(ally)
+
+		ally_closest.sort(key=lambda x: x.path_pos)
+		ally_closest = ally_closest[::-1]
+		if len(ally_closest) > 0:
+			first_ally = ally_closest[0]
+			if self.shoot_count == 5:
+				if first_ally.hit(self.damage) == True:
+					allies.remove(first_ally)
+
+			"""
+			Aqui se puede hacer un flip, preguntando si la x de ally pasó la x + mitad de al torre
+			"""
+
 	def rotate(self):
 		if self.rotation == True:
 			i = 0
@@ -40,6 +63,7 @@ class DemonTower (Enemy):
 
 	def draw(self, win):
 		#super().draw_radius(win)
+		self.shoot_delay()
 		img = self.imgs[int(self.animation_count)]
 		self.sprite_movement()
 		win.blit(img, (self.posx, self.posy))
@@ -55,6 +79,29 @@ class SkellyTower (Enemy):
 		self.range = 150
 		self.rotate()
 
+	def attack(self, allies):
+
+		ally_closest = []
+		for ally in allies:
+			x = ally.x
+			y = ally.y
+
+			dis = math.sqrt((self.posx - ally.img.get_width()/2 - x)**2 + (self.posy - ally.img.get_height()/2 - y)**2)
+			if dis < self.range:
+				ally_closest.append(ally)
+
+		ally_closest.sort(key=lambda x: x.path_pos)
+		ally_closest = ally_closest[::-1]
+		if len(ally_closest) > 0:
+			first_ally = ally_closest[0]
+			if self.shoot_count == 5:
+				if first_ally.hit(self.damage) == True:
+					allies.remove(first_ally)
+
+			"""
+			Aqui se puede hacer un flip, preguntando si la x de ally pasó la x + mitad de al torre
+			"""
+
 	def rotate(self):
 		if self.rotation == True:
 			i = 0
@@ -64,6 +111,7 @@ class SkellyTower (Enemy):
 
 	def draw(self, win):
 		#super().draw_radius(win)
+		self.shoot_delay()
 		img = self.imgs[int(self.animation_count)]
 		self.sprite_movement()
 		win.blit(img, (self.posx, self.posy))
