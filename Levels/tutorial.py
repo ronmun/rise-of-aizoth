@@ -15,6 +15,8 @@ class Tutorial (Level):
         self.bg = pygame.image.load(os.path.join("Assets/Sprites/Screens", "01_Tutorial.png"))
         self.bg = pygame.transform.scale(self.bg, (self.width, self.height))
         self.game = game
+        self.start_pos = (-50, 200)
+        self.end_pos = (180, 775)
 
     def start(self):
         print("Tutorial Starts")
@@ -25,7 +27,7 @@ class Tutorial (Level):
 
         self.characters.append(Elf(100, 100))
         self.characters.append(Dino(200, 200))
-        self.characters.append(Ogre(300, 300))
+        self.characters.append(Ogre(180, 200))
         self.characters.append(Wizard(400, 400))
 
     def run(self):
@@ -36,4 +38,5 @@ class Tutorial (Level):
             if event.type == pygame.MOUSEBUTTONUP:
                 # check if hit start btn
                 x, y = pygame.mouse.get_pos()
+                print(x,y)
                 self.game.change(LevelState.REBELION)

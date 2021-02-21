@@ -9,6 +9,8 @@ class Level:
         self.bg = None
         self.enemies = []
         self.characters = []
+        self.start_pos = ()
+        self.end_pos = ()
 
     def start(self):
         pass

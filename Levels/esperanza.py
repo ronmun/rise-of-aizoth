@@ -16,6 +16,8 @@ class Esperanza (Level):
         self.bg = pygame.image.load(os.path.join("Assets/Sprites/Screens", "03_Esperanza.png"))
         self.bg = pygame.transform.scale(self.bg, (self.width, self.height))
         self.game = game
+        self.start_pos = (-50, 150)
+        self.end_pos = (-30, 650)
 
     def start(self):
         print("Esperanza Starts")
@@ -34,4 +36,5 @@ class Esperanza (Level):
             if event.type == pygame.MOUSEBUTTONUP:
                 # check if hit start btn
                 x, y = pygame.mouse.get_pos()
+                print(x, y)
                 self.game.change(LevelState.TUTORIAL)

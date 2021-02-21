@@ -16,6 +16,8 @@ class Rebelion (Level):
         self.bg = pygame.image.load(os.path.join("Assets/Sprites/Screens", "02_Rebelion.png"))
         self.bg = pygame.transform.scale(self.bg, (self.width, self.height))
         self.game = game
+        self.start_pos = (-50, 150)
+        self.end_pos = (850, 780)
 
     def start(self):
         print("Rebelion Starts")
@@ -33,4 +35,5 @@ class Rebelion (Level):
             if event.type == pygame.MOUSEBUTTONUP:
                 # check if hit start btn
                 x, y = pygame.mouse.get_pos()
+                print(x, y)
                 self.game.change(LevelState.ESPERANZA)
