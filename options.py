@@ -17,9 +17,9 @@ class Options(Screen):
         self.musicOffPos = (390, 296)
         self.exitPos = (390, 424)
 
-        self.musicOn = pygame.image.load(os.path.join("Assets/Sprites/Screens/botones", "musica_on.png"))
-        self.musicOff = pygame.image.load(os.path.join("Assets/Sprites/Screens/botones", "music_off.png"))
-        self.exit = pygame.image.load(os.path.join("Assets/Sprites/Screens/botones", "exit.png"))
+        self.musicOn = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "musica_on.png"))
+        self.musicOff = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "music_off.png"))
+        self.exit = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "exit.png"))
 
         self.musicOn = pygame.transform.scale(self.musicOn, (180, 78))
         self.musicOff = pygame.transform.scale(self.musicOff, (180, 78))
@@ -43,12 +43,12 @@ class Options(Screen):
     def musicOnCheck(self, x, y):
         if self.musicOnPos[0] <= x <= self.musicOnPos[0] + self.musicOn.get_width():
             if self.musicOnPos[1] <= y <= self.musicOnPos[1] + self.musicOn.get_height():
-                Music.playMusic(self)
+                self.controller.music.play ()
 
     def musicOffCheck(self, x, y):
         if self.musicOffPos[0] <= x <= self.musicOffPos[0] + self.musicOff.get_width():
             if self.musicOffPos[1] <= y <= self.musicOffPos[1] + self.musicOff.get_height():
-                Music.stopMusic(self)
+                self.controller.music.stop ()
 
     def exitCheck(self, x, y):
         if self.exitPos[0] <= x <= self.exitPos[0] + self.exit.get_width():
