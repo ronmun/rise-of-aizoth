@@ -11,7 +11,7 @@ class Entity:
 		self.height = ENTITY_HEIGHT
 		self.animation_count = 0
 		self.health = 1
-		self.vel = 3
+		self.vel = 1
 		self.path = [(-50, 200), (780, 200), (780, 560), (180, 560), (180, 775)]
 		self.x = x
 		self.y = y
@@ -65,11 +65,10 @@ class Entity:
 			for x, img in enumerate(self.imgs):
 				self.imgs[x] = pygame.transform.flip(img, True, False)
 
-		move_x, move_y = ((self.x + dirn[0]), (self.y + dirn[1]))
+		move_x, move_y = ((self.x + dirn[0]*self.vel), (self.y + dirn[1]*self.vel))
 
 		self.x = move_x
 		self.y = move_y
-		print ("x " + str (self.x) + " - y " + str (self.y))
 
 		# Go to next point
 		if dirn[0] >= 0: # moving right
