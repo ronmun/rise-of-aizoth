@@ -17,6 +17,7 @@ class Tutorial (Level):
         self.game = game
         self.start_pos = (-50, 200)
         self.end_pos = (180, 775)
+        self.path = [(-50, 200), (780, 200), (780, 560), (180, 560), (180, 775)]
 
     def start(self):
         print("Tutorial Starts")
