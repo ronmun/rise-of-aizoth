@@ -43,13 +43,12 @@ class Tutorial (Level):
                 if self.level_ui.won:
                     if self.level_ui.nextCheck(x, y):
                         self.game.change(LevelState.REBELION)
-
-                if self.level_ui.lost:
+                elif self.level_ui.lost:
                     if self.level_ui.retryCheck(x, y):
                         self.game.change(LevelState.TUTORIAL)
 
 
         self.character_movement()
         self.enemy_attacks()
-        self.check_win()
-        self.check_lose()
+        if not self.check_win():
+            self.check_lose()
