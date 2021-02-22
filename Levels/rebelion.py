@@ -12,7 +12,8 @@ class Rebelion (Level):
         self.bg = pygame.image.load(os.path.join("Assets/Sprites/Screens", "02_Rebelion.png"))
         self.bg = pygame.transform.scale(self.bg, (self.width, self.height))
         self.game = game
-        self.gems = 300
+        self.max_gems = 200
+        self.gems = self.max_gems
         self.start_pos = (-50, 140)
         self.end_pos = (850, 800)
         self.path = [(-50, 140), (370, 140), (370, 260), (565, 260), (565, 520), (850, 520), (850, 800)]
@@ -40,6 +41,14 @@ class Rebelion (Level):
                 print(x, y)
 
                 self.check_character_buy(x, y)
+
+                if self.level_ui.won:
+                    if self.level_ui.nextCheck(x, y):
+                        self.game.change(LevelState.ESPERANZA)
+
+                if self.level_ui.lost:
+                    if self.level_ui.retryCheck(x, y):
+                        self.game.change(LevelState.REBELION)
 
         self.character_movement()
         self.enemy_attacks()

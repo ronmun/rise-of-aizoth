@@ -19,6 +19,8 @@ class LevelUi:
         self.wizardTextPos = (POSX_UN_DIGITO, 600)
         self.loseTextPos = (320, 200)
         self.winTextPos = (320, 200)
+        self.nextbuttonpos = (480, 400)
+        self.retrybuttonpos = (480, 400)
         self.lost = False
         self.won = False
         self.pause = PAUSE
@@ -28,7 +30,7 @@ class LevelUi:
         self.next = NEXT
         self.next = pygame.transform.scale(self.next, (120, 52))
         self.font = pygame.font.Font(os.path.join("Assets/Fonts","m3x6.ttf"),80)
-        self.messageFont = pygame.font.Font(os.path.join("Assets/Fonts","m3x6.ttf"),180)
+        self.messageFont = pygame.font.Font(os.path.join("Assets/Fonts","m3x6.ttf"),250)
         self.win = win
 
     def draw(self, gems):
@@ -47,11 +49,12 @@ class LevelUi:
         if self.won:
             win_text = self.messageFont.render("YOU WON!", True, (255, 246, 0))
             self.win.blit(win_text, self.winTextPos)
-            self.win.blit(self.next, self.loseTextPos)
+            self.win.blit(self.next, self.nextbuttonpos)
+
         if self.lost:
             lose_text = self.messageFont.render("YOU LOST", True, (255, 32, 53))
             self.win.blit(lose_text, self.loseTextPos)
-            self.win.blit(self.retry, self.loseTextPos)
+            self.win.blit(self.retry, self.retrybuttonpos)
 
     def pauseCheck(self, x, y):
         if self.pausePos[0] <= x <= self.pausePos[0] + self.pause.get_width():
@@ -77,4 +80,14 @@ class LevelUi:
     def wizardCheck(self, x, y):
         if 957 <= x <= 1068:
             if 600 <= y <= 709:
+                return True
+
+    def nextCheck(self, x, y):
+        if self.nextbuttonpos[0] <= x <= self.nextbuttonpos[0] + self.next.get_width():
+            if self.nextbuttonpos[1] <= y <= self.nextbuttonpos[1] + self.next.get_height():
+                return True
+
+    def retryCheck(self, x, y):
+        if self.retrybuttonpos[0] <= x <= self.retrybuttonpos[0] + self.retry.get_width():
+            if self.retrybuttonpos[1] <= y <= self.retrybuttonpos[1] + self.retry.get_height():
                 return True

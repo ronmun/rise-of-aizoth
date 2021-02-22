@@ -20,6 +20,7 @@ class Level:
         self.end_pos = ()
         self.level_ui = LevelUi(win)
         self.gems = 0
+        self.max_gems = 0
         self.arrived_gems = 0
 
     def start(self):
@@ -43,15 +44,17 @@ class Level:
             self.gems -= WIZARD_COST
 
     def check_win(self):
-        pass
-        """
-        if win condition
+        if self.arrived_gems >= self.max_gems * .3:
+            print("won")
             self.level_ui.won = True
-        """
+            return True
+        return False
 
     def check_lose(self):
         if len(self.characters) == 0 and self.gems < ELF_COST:
             self.level_ui.lost = True
+            return True
+        return False
 
     def initial_troop(self):
         self.characters.append(Elf(self.start_pos, self.path))

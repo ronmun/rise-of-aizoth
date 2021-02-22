@@ -11,7 +11,8 @@ class Esperanza (Level):
         self.bg = pygame.image.load(os.path.join("Assets/Sprites/Screens", "03_Esperanza.png"))
         self.bg = pygame.transform.scale(self.bg, (self.width, self.height))
         self.game = game
-        self.gems = 200
+        self.max_gems = 300
+        self.gems = self.max_gems
         self.start_pos = (-50, 150)
         self.end_pos = (-30, 650)
         self.path = [(-50, 140), (490, 140), (490, 310), (850, 310), (850, 530), (330, 530), (330, 670), (230, 670), (230, 645), (-50, 645)]
@@ -40,6 +41,14 @@ class Esperanza (Level):
                 print(x, y)
 
                 self.check_character_buy(x, y)
+
+                if self.level_ui.won:
+                    if self.level_ui.nextCheck(x, y):
+                        self.game.quit()
+
+                if self.level_ui.lost:
+                    if self.level_ui.retryCheck(x, y):
+                        self.game.change(LevelState.ESPERANZA)
 
         self.character_movement()
         self.enemy_attacks()

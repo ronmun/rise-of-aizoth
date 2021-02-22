@@ -35,7 +35,7 @@ class Credits(Screen):
                         self.controller.change(State.MENU)
                         print("Salida")
         Scroll = True
-        if Scroll == True and self.rect.y > -4000:
+        if Scroll == True and self.rect.y > -3500:
             self.clip(self.states)
             self.rect.y -= 5
         else:
