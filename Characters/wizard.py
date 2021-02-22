@@ -33,7 +33,6 @@ class Wizard (Entity):
 	def regen(self):
 		if self.health < self.max_health and int(self.regen_timer) == 5 and not self.regenerated:
 			self.regenerated = True
-			print("me regenere")
 			if self.health + 2.5 > self.max_health:
 				self.health = self.max_health
 			else:
@@ -42,7 +41,6 @@ class Wizard (Entity):
 
 	def regen_delay(self):
 		self.regen_timer += 0.025
-		print(self.regen_timer)
 		if self.regen_timer > 5.1:
 			self.regen_timer = 0
 			self.regenerated = False
