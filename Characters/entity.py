@@ -7,8 +7,8 @@ ENTITY_HEIGHT = 28
 SCALE = 1.75
 ORC_COST = 10
 ELF_COST = 2
-DINO_COST = 15
-WIZARD_COST = 5
+DINO_COST = 5
+WIZARD_COST = 15
 
 path2 = os.path.join("Assets/Sounds", "die.wav")
 
@@ -23,14 +23,11 @@ class Entity:
 		self.x = pos[0]
 		self.y = pos[1]
 		self.img = None
-		self.dis = 0
 		self.path_pos = 0
 		self.move_count = 0
-		self.move_dis = 0
 		self.imgs = []
 		self.flipped = False
 		self.max_health = 0
-		self.speed_increase = 1.2
 		self.arrived = False
 		self.die_sound = pygame.mixer.Sound(path2)
 		self.die_sound.set_volume(0.2)
@@ -101,11 +98,6 @@ class Entity:
 					self.path_pos += 1
 
 	def hit(self, damage):
-		"""
-		Returns if an enemy has died and removes one health
-        each call
-        :return: Bool
-        """
 		self.health -= damage
 		if self.health <= 0:
 			self.die_sound.play()
@@ -113,11 +105,6 @@ class Entity:
 		return False
 
 	def draw_health_bar(self, win):
-		"""
-        draw health bar above enemy
-        :param win: surface
-        :return: None
-        """
 		length = 50
 		move_by = round(length / self.max_health)
 		health_bar = move_by * self.health
