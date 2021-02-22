@@ -13,7 +13,7 @@ sprites = [f for f in listdir (path) if isfile (join (path, f))]
 path2 = os.path.join ("Assets/Sprites/Characters/SkellyTower")
 sprites2 = [f for f in listdir (path2) if isfile (join (path2, f))]
 
-path3 = os.path.join("Assets/Sounds", "hit.wav")
+path3 = os.path.join("Assets/Sounds", "shoot.wav")
 
 
 #Escala original de las imagenes es 64x80
@@ -34,8 +34,8 @@ class DemonTower (Enemy):
 		self.range = 200
 		self.rotate()
 		self.particles = AttackParticle()
-		self.die_sound = pygame.mixer.Sound(path3)
-		self.die_sound.set_volume(0.1)
+		self.shoot_sound = pygame.mixer.Sound(path3)
+		self.shoot_sound.set_volume(0.05)
 
 	def attack(self, allies):
 
@@ -57,9 +57,9 @@ class DemonTower (Enemy):
 			first_ally = ally_closest[0]
 			if int(self.shoot_count) == 5:
 				self.particles_ON = True
+				self.shoot_sound.play()
 				if first_ally.hit(self.damage) == True:
 					allies.remove(first_ally)
-					self.die_sound.play()
 
 		if self.particles_ON and int(self.shoot_count) == 4:
 			self.particles_ON = False
@@ -96,8 +96,8 @@ class SkellyTower (Enemy):
 		self.range = 150
 		self.rotate()
 		self.particles = AttackParticle()
-		self.die_sound = pygame.mixer.Sound(path3)
-		self.die_sound.set_volume(0.1)
+		self.shoot_sound = pygame.mixer.Sound(path3)
+		self.shoot_sound.set_volume(0.1)
 
 	def attack(self, allies):
 
@@ -120,9 +120,9 @@ class SkellyTower (Enemy):
 			first_ally = ally_closest[0]
 			if int(self.shoot_count) == 5:
 				self.particles_ON = True
+				self.shoot_sound.play()
 				if first_ally.hit(self.damage) == True:
 					allies.remove(first_ally)
-					self.die_sound.play()
 
 		if self.particles_ON and int(self.shoot_count) == 4:
 			self.particles_ON = False

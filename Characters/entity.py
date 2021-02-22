@@ -1,5 +1,6 @@
 import math
 import pygame
+import os
 
 ENTITY_WIDTH = 16
 ENTITY_HEIGHT = 28
@@ -8,6 +9,8 @@ ORC_COST = 10
 ELF_COST = 2
 DINO_COST = 15
 WIZARD_COST = 5
+
+path2 = os.path.join("Assets/Sounds", "die.wav")
 
 class Entity:
 	def __init__(self, pos, path):
@@ -29,6 +32,8 @@ class Entity:
 		self.max_health = 0
 		self.speed_increase = 1.2
 		self.arrived = False
+		self.die_sound = pygame.mixer.Sound(path2)
+		self.die_sound.set_volume(0.2)
 
 	def draw (self, win):
 		self.img = self.imgs[int(self.animation_count)]
@@ -39,18 +44,6 @@ class Entity:
 		self.animation_count += 0.09
 		if self.animation_count >= len(self.imgs):
 			self.animation_count = 0
-
-	def collide (self, X, Y):
-		"""
-		Returns if position has hit the entity
-		:param x: int
-		:param y: int
-		:return: Bool
-		"""
-		if X <= self.x + self.width and X >= self.x:
-			if Y <= self.y + self.height and Y >= self.y:
-				return True
-		return False
 
 	def flip(self):
 		for x, img in enumerate(self.imgs):
@@ -115,6 +108,7 @@ class Entity:
         """
 		self.health -= damage
 		if self.health <= 0:
+			self.die_sound.play()
 			return True
 		return False
 
