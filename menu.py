@@ -43,7 +43,7 @@ class MainMenu(Screen):
                 print(x, y)
 
                 if self.interface.level1Check(x, y):
-                    self.controller.change(State.GAME, None, LevelState.TUTORIAL)
+                    self.controller.change(State.CINEMATIC)
                 elif self.interface.level2Check(x, y):
                     self.controller.change(State.GAME, None, LevelState.REBELION)
                 elif self.interface.level3Check(x, y):
