@@ -1,5 +1,4 @@
-import os
-import pygame
+
 
 class Screen:
 	def __init__(self, w, h, win):

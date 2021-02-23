@@ -64,9 +64,6 @@ class DemonTower (Enemy):
 		if self.particles_ON and int(self.shoot_count) == 4:
 			self.particles_ON = False
 
-			"""
-			Aqui se puede hacer un flip, preguntando si la x de ally pasó la x + mitad de al torre
-			"""
 
 	def rotate(self):
 		if self.rotation == True:
@@ -126,9 +123,7 @@ class SkellyTower (Enemy):
 
 		if self.particles_ON and int(self.shoot_count) == 4:
 			self.particles_ON = False
-			"""
-			Aqui se puede hacer un flip, preguntando si la x de ally pasó la x + mitad de al torre
-			"""
+
 
 	def rotate(self):
 		if self.rotation == True:

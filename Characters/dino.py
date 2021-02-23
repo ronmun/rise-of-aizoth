@@ -10,7 +10,6 @@ files = [f for f in listdir (path) if isfile (join (path, f))]
 
 imgs = []
 for f in files:
-	print (f)
 	imgs.append (
 		pygame.transform.scale (
 			pygame.image.load (join (path, f)),

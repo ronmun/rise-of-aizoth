@@ -2,13 +2,16 @@ import pygame
 import os
 
 from screen import Screen
-from music import Music
 
+BG_IMAGE = pygame.image.load(os.path.join("Assets/Sprites/Screens", "PantallaMenu.png"))
+MUSICA_ON = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "musica_on.png"))
+MUSICA_OFF = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "music_off.png"))
+EXIT = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "exit.png"))
 
 class Options(Screen):
     def __init__(self, w, h, win, controller, State):
         super().__init__(w, h, win)
-        self.bg = pygame.image.load(os.path.join("Assets/Sprites/Screens", "PantallaMenu.png"))
+        self.bg = BG_IMAGE
         self.bg = pygame.transform.scale(self.bg, (self.width, self.height))
         self.controller = controller
         self.win = win
@@ -17,9 +20,9 @@ class Options(Screen):
         self.musicOffPos = (450, 296)
         self.exitPos = (450, 424)
 
-        self.musicOn = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "musica_on.png"))
-        self.musicOff = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "music_off.png"))
-        self.exit = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "exit.png"))
+        self.musicOn = MUSICA_ON
+        self.musicOff = MUSICA_OFF
+        self.exit = EXIT
 
         self.musicOn = pygame.transform.scale(self.musicOn, (180, 78))
         self.musicOff = pygame.transform.scale(self.musicOff, (180, 78))
@@ -45,11 +48,13 @@ class Options(Screen):
     def musicOnCheck(self, x, y):
         if self.musicOnPos[0] <= x <= self.musicOnPos[0] + self.musicOn.get_width():
             if self.musicOnPos[1] <= y <= self.musicOnPos[1] + self.musicOn.get_height():
+                print("Music on")
                 self.controller.music.play ()
 
     def musicOffCheck(self, x, y):
         if self.musicOffPos[0] <= x <= self.musicOffPos[0] + self.musicOff.get_width():
             if self.musicOffPos[1] <= y <= self.musicOffPos[1] + self.musicOff.get_height():
+                print("Music off")
                 self.controller.music.stop ()
 
     def exitCheck(self, x, y):

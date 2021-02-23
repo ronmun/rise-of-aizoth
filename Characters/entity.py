@@ -24,7 +24,6 @@ class Entity:
 		self.y = pos[1]
 		self.img = None
 		self.path_pos = 0
-		self.move_count = 0
 		self.imgs = []
 		self.flipped = False
 		self.max_health = 0

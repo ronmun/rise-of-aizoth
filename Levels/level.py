@@ -1,6 +1,3 @@
-import os
-import pygame
-
 from Characters.entity import ORC_COST, ELF_COST, DINO_COST, WIZARD_COST
 from Levels.level_ui import LevelUi
 from Characters.elf import Elf
@@ -46,7 +43,6 @@ class Level:
 
     def check_win(self):
         if self.arrived_gems >= self.max_gems * .3:
-            print("won")
             self.level_ui.won = True
             return True
         return False
@@ -71,7 +67,7 @@ class Level:
                 c.regen()
             if c.arrived:
                 self.arrived(c)
-                print("adios")
+                print("arrived")
 
     def enemy_attacks(self):
         for e in self.enemies:

@@ -66,7 +66,7 @@ class LevelUi:
     def pauseCheck(self, x, y):
         if self.pausePos[0] <= x <= self.pausePos[0] + self.pause.get_width():
             if self.pausePos[1] <= y <= self.pausePos[1] + self.pause.get_height():
-                print("Pausa")
+                print("Pause")
                 return True
 
     def elfCheck(self, x, y):
