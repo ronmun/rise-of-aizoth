@@ -24,6 +24,7 @@ class LevelUi:
         self.retrybuttonpos = (420, 400)
         self.lost = False
         self.won = False
+        self.delay_tuto_text = 0
         self.pause = PAUSE
         self.pause = pygame.transform.scale(self.pause, (120, 52))
         self.retry = RETRY
@@ -46,7 +47,7 @@ class LevelUi:
         self.win.blit(dino_text, self.dinoTextPos)
         self.win.blit(wizzard_text, self.wizardTextPos)
         self.win.blit(elf_text, self.elfTextPos)
-        if name == "Tutorial" and not self.won and not self.lost:
+        if name == "Tutorial" and not self.Tuto_Text_Delay():
             tutorial_text1 = self.font.render("Spend the gems on ally troops",True, pygame.Color('White'))
             tutorial_text2 = self.font.render("30 % of the gems must arrive", True, pygame.Color('White'))
             self.win.blit(tutorial_text1, self.tuto_text_pos)
@@ -97,3 +98,11 @@ class LevelUi:
         if self.retrybuttonpos[0] <= x <= self.retrybuttonpos[0] + self.retry.get_width():
             if self.retrybuttonpos[1] <= y <= self.retrybuttonpos[1] + self.retry.get_height():
                 return True
+
+    def Tuto_Text_Delay(self):
+        if self.delay_tuto_text < 500:
+            self.delay_tuto_text += 1
+            if self.delay_tuto_text >= 500:
+                return True
+        else:
+            return True

@@ -38,6 +38,7 @@ class Cinematic(Screen):
 
     def start(self):
         print("Credits state!")
+        self.fade()
         self.enemies.append(SkellyTower((1962, 135), True))
         self.enemies.append(DemonTower((2166, 185), True))
         self.enemies.append(SkellyTower((2285, 320), True))
@@ -107,3 +108,12 @@ class Cinematic(Screen):
         else:
             self.bg.set_clip(pygame.Rect(clipped_rect))
         return clipped_rect
+
+    def fade(self):
+        fade = pygame.Surface((self.width, self.height))
+        fade.fill((50, 50, 50))
+        for alpha in range(0, 300):
+            fade.set_alpha(alpha)
+            self.win.blit(fade, (0, 0))
+            pygame.display.update()
+            pygame.time.delay(5)
