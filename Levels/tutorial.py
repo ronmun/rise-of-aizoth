@@ -10,6 +10,7 @@ class Tutorial (Level):
         super ().__init__(w,h,win)
         self.bg = pygame.image.load(os.path.join("Assets/Sprites/Screens", "01_Tutorial.png"))
         self.bg = pygame.transform.scale(self.bg, (self.width, self.height))
+        self.name = "Tutorial"
         self.game = game
         self.max_gems = 100
         self.gems = self.max_gems

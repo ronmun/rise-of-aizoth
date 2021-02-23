@@ -10,6 +10,7 @@ class Esperanza (Level):
         super ().__init__(w,h,win)
         self.bg = pygame.image.load(os.path.join("Assets/Sprites/Screens", "03_Esperanza.png"))
         self.bg = pygame.transform.scale(self.bg, (self.width, self.height))
+        self.name = "Esperanza"
         self.game = game
         self.max_gems = 300
         self.gems = self.max_gems
