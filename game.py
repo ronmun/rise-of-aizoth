@@ -47,12 +47,23 @@ class Game (Screen):
 			self.level = Pause (self.width, self.height, self.win, self.controller, self, self.level)
 			self.level.start()
 
+		if state != LevelState.PAUSE:
+			self.fade()
+
 	def reload_level(self, load_level):
 		self.level = load_level
 
 	def change_to_credits(self):
 		self.controller.change(State.CREDITS)
 
+	def fade(self):
+		fade = pygame.Surface((self.width, self.height))
+		fade.fill((50, 50, 50))
+		for alpha in range(0, 300):
+			fade.set_alpha(alpha)
+			self.win.blit(fade, (0, 0))
+			pygame.display.update()
+			pygame.time.delay(5)
 
 	def quit(self):
 		self.controller.quit ()
