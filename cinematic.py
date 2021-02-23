@@ -78,7 +78,6 @@ class Cinematic(Screen):
             self.clip(self.states)
             self.rect.x -= 3
         else:
-            self.fade()
             self.controller.change(State.GAME, None, LevelState.TUTORIAL)
         self.image = self.bg.subsurface(self.bg.get_clip())
 
@@ -108,12 +107,3 @@ class Cinematic(Screen):
         else:
             self.bg.set_clip(pygame.Rect(clipped_rect))
         return clipped_rect
-    
-    def fade(self):
-        fade = pygame.Surface((self.width,self.height))
-        fade.fill((0,0,0))
-        for alpha in range(0,300):
-            fade.set_alpha(alpha)
-            self.win.blit(fade, (0,0))
-            pygame.display.update()
-            pygame.time.delay(5)
