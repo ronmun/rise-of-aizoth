@@ -3,7 +3,6 @@ import pygame
 
 from state import State
 from screen import Screen
-from pygame import mixer
 from Enemies.towers import DemonTower, SkellyTower
 from Characters.elf import Elf
 from Characters.dino import Dino
@@ -26,7 +25,7 @@ class Cinematic(Screen):
 
         self.controller = controller
         self.clock = pygame.time.Clock()
-        self.salidaPos = (1080, 0)
+        self.salidaPos = (940, 0)
         self.salida = pygame.image.load(os.path.join("Assets/Sprites/Screens/botones", "exit.png"))
         self.salida = pygame.transform.scale(self.salida, (135, 58))
 
@@ -72,8 +71,15 @@ class Cinematic(Screen):
 
     def run(self):
         for event in pygame.event.get():
+            x, y = pygame.mouse.get_pos()
             if event.type == pygame.QUIT:
                 self.controller.quit()
+            if self.salidaPos[0] <= x <= self.salidaPos[0] + self.salida.get_width():
+                if self.salidaPos[1] <= y <= self.salidaPos[1] + self.salida.get_height():
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        self.intro_voice.stop()
+                        self.controller.change(State.GAME, None, LevelState.TUTORIAL)
+                        print("Salida")
         Scroll = True
         if Scroll == True and self.rect.x > -2400+1080:
             self.clip(self.states)
