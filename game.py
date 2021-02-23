@@ -63,7 +63,7 @@ class Game (Screen):
 			fade.set_alpha(alpha)
 			self.win.blit(fade, (0, 0))
 			pygame.display.update()
-			pygame.time.delay(5)
+			pygame.time.delay(2)
 
 	def quit(self):
 		self.controller.quit ()
