@@ -1,6 +1,7 @@
 import pygame
 
 from screen import Screen
+from state import State
 from Levels.levelstate import LevelState
 from Levels.pause import Pause
 
@@ -49,9 +50,12 @@ class Game (Screen):
 	def reload_level(self, load_level):
 		self.level = load_level
 
+	def change_to_credits(self):
+		self.controller.change(State.CREDITS)
+
+
 	def quit(self):
 		self.controller.quit ()
-
 
 	def run(self):
 		self.level.run()
