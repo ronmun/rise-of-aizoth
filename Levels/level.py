@@ -22,6 +22,7 @@ class Level:
         self.gems = 0
         self.max_gems = 0
         self.arrived_gems = 0
+        self.name = ""
 
     def start(self):
         pass
@@ -84,7 +85,7 @@ class Level:
             ally.draw(self.win)
             if ally.health != ally.max_health:
                 ally.draw_health_bar(self.win)
-        self.level_ui.draw(self.gems)
+        self.level_ui.draw(self.name, self.gems)
         # update not necesary bc it updates in game
 
     def end(self):

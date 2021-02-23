@@ -11,6 +11,7 @@ class Rebelion (Level):
         super ().__init__(w,h,win)
         self.bg = pygame.image.load(os.path.join("Assets/Sprites/Screens", "02_Rebelion.png"))
         self.bg = pygame.transform.scale(self.bg, (self.width, self.height))
+        self.name = "Rebelion"
         self.game = game
         self.max_gems = 200
         self.gems = self.max_gems

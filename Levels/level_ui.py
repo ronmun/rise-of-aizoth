@@ -17,10 +17,11 @@ class LevelUi:
         self.dinoTextPos = (POSX_UN_DIGITO, 330)
         self.orcTextPos = (POSX_DOBLE_DIGITO, 467)
         self.wizardTextPos = (POSX_DOBLE_DIGITO, 600)
-        self.loseTextPos = (320, 200)
-        self.winTextPos = (320, 200)
-        self.nextbuttonpos = (480, 400)
-        self.retrybuttonpos = (480, 400)
+        self.loseTextPos = (250, 200)
+        self.winTextPos = (250, 200)
+        self.tuto_text_pos = (200, 600)
+        self.nextbuttonpos = (420, 400)
+        self.retrybuttonpos = (420, 400)
         self.lost = False
         self.won = False
         self.pause = PAUSE
@@ -33,7 +34,7 @@ class LevelUi:
         self.messageFont = pygame.font.Font(os.path.join("Assets/Fonts","m3x6.ttf"),250)
         self.win = win
 
-    def draw(self, gems):
+    def draw(self, name, gems):
         self.win.blit(self.pause, self.pausePos)
         gems_text = self.font.render(str(gems), True, (183, 73, 232))
         elf_text = self.font.render(str(ELF_COST), True, (183, 73, 232))
@@ -45,6 +46,11 @@ class LevelUi:
         self.win.blit(dino_text, self.dinoTextPos)
         self.win.blit(wizzard_text, self.wizardTextPos)
         self.win.blit(elf_text, self.elfTextPos)
+        if name == "Tutorial" and not self.won and not self.lost:
+            tutorial_text1 = self.font.render("Spend the gems on ally troops",True, pygame.Color('White'))
+            tutorial_text2 = self.font.render("30 % of the gems must arrive", True, pygame.Color('White'))
+            self.win.blit(tutorial_text1, self.tuto_text_pos)
+            self.win.blit(tutorial_text2, (self.tuto_text_pos[0],self.tuto_text_pos[1]+50))
 
         if self.won:
             win_text = self.messageFont.render("YOU WON!", True, (255, 246, 0))
