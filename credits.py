@@ -5,7 +5,7 @@ from state import State
 from screen import Screen
 
 BG_IMAGE = pygame.image.load(os.path.join("Assets/Sprites/Screens", "CreditsBg.png"))
-EXIT_BUTTON = pygame.image.load(os.path.join("Assets/Sprites/Screens/botones", "exit.png"))
+EXIT_BUTTON = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "exit.png"))
 
 class Credits(Screen):
     def __init__(self, w, h, win, controller):

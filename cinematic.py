@@ -26,7 +26,7 @@ class Cinematic(Screen):
         self.controller = controller
         self.clock = pygame.time.Clock()
         self.salidaPos = (940, 0)
-        self.salida = pygame.image.load(os.path.join("Assets/Sprites/Screens/botones", "exit.png"))
+        self.salida = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "exit.png"))
         self.salida = pygame.transform.scale(self.salida, (135, 58))
 
         self.intro_voice = pygame.mixer.Sound(voice)
