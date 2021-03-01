@@ -1,6 +1,3 @@
-import os
-import pygame
-
 from Characters.entity import ORC_COST, ELF_COST, DINO_COST, WIZARD_COST
 from Levels.level_ui import LevelUi
 from Characters.elf import Elf
@@ -20,7 +17,9 @@ class Level:
         self.end_pos = ()
         self.level_ui = LevelUi(win)
         self.gems = 0
+        self.max_gems = 0
         self.arrived_gems = 0
+        self.name = ""
 
     def start(self):
         pass
@@ -43,15 +42,16 @@ class Level:
             self.gems -= WIZARD_COST
 
     def check_win(self):
-        pass
-        """
-        if win condition
+        if self.arrived_gems >= self.max_gems * .3:
             self.level_ui.won = True
-        """
+            return True
+        return False
 
     def check_lose(self):
         if len(self.characters) == 0 and self.gems < ELF_COST:
             self.level_ui.lost = True
+            return True
+        return False
 
     def initial_troop(self):
         self.characters.append(Elf(self.start_pos, self.path))
@@ -67,7 +67,7 @@ class Level:
                 c.regen()
             if c.arrived:
                 self.arrived(c)
-                print("adios")
+                print("arrived")
 
     def enemy_attacks(self):
         for e in self.enemies:
@@ -81,7 +81,7 @@ class Level:
             ally.draw(self.win)
             if ally.health != ally.max_health:
                 ally.draw_health_bar(self.win)
-        self.level_ui.draw(self.gems)
+        self.level_ui.draw(self.name, self.gems)
         # update not necesary bc it updates in game
 
     def end(self):

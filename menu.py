@@ -11,12 +11,15 @@ from Characters.dino import Dino
 from Characters.orc import Orc
 from Characters.wizard import Wizard
 
+BG_IMAGE = pygame.image.load(os.path.join("Assets/Sprites/Screens", "PantallaMenu.png"))
+TITLE = pygame.image.load(os.path.join("Assets/Sprites/Screens", "GameTitle.png"))
+
 class MainMenu(Screen):
     def __init__(self, w, h, win, controller):
         super().__init__(w, h, win)
-        self.bg = pygame.image.load(os.path.join("Assets/Sprites/Screens", "PantallaMenu.png"))
+        self.bg = BG_IMAGE
         self.bg = pygame.transform.scale(self.bg, (self.width, self.height))
-        self.title = pygame.image.load(os.path.join("Assets/Sprites/Screens", "GameTitle.png")).convert_alpha()
+        self.title = TITLE
         self.controller = controller
         self.interface = MenuUi(win)
         self.path = [(-50, 595),(1100, 595)]
@@ -38,12 +41,11 @@ class MainMenu(Screen):
                 self.controller.quit()
 
             if event.type == pygame.MOUSEBUTTONUP:
-                # check if hit start btn
                 x, y = pygame.mouse.get_pos()
-                print(x, y)
+                #print(x, y)
 
                 if self.interface.level1Check(x, y):
-                    self.controller.change(State.GAME, None, LevelState.TUTORIAL)
+                    self.controller.change(State.CINEMATIC)
                 elif self.interface.level2Check(x, y):
                     self.controller.change(State.GAME, None, LevelState.REBELION)
                 elif self.interface.level3Check(x, y):

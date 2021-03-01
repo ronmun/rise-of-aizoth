@@ -1,6 +1,12 @@
 import pygame
 import os
 
+LEVEL_01 = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "Nivel_1.png"))
+LEVEL_02 = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "Nivel_2.png"))
+LEVEL_03 = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "Nivel_3.png"))
+OPCIONES = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "opciones.png"))
+CREDITOS = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "creditos.png"))
+SALIDA = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "exit.png"))
 
 class MenuUi:
     def __init__(self, win):
@@ -11,12 +17,12 @@ class MenuUi:
         self.opcionesPos = (450, 609)
         self.creditosPos = (50, 609)
         self.salidaPos = (850, 609)
-        self.level1 = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "Nivel_1.png"))
-        self.level2 = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "Nivel_2.png"))
-        self.level3 = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "Nivel_3.png"))
-        self.opciones = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "opciones.png"))
-        self.creditos = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "creditos.png"))
-        self.salida = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "exit.png"))
+        self.level1 = LEVEL_01
+        self.level2 = LEVEL_02
+        self.level3 = LEVEL_03
+        self.opciones = OPCIONES
+        self.creditos = CREDITOS
+        self.salida = SALIDA
 
         self.level1 = pygame.transform.scale(self.level1, (180, 78))
         self.level2 = pygame.transform.scale(self.level2, (180, 78))

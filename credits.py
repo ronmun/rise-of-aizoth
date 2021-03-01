@@ -4,11 +4,13 @@ import pygame
 from state import State
 from screen import Screen
 
+BG_IMAGE = pygame.image.load(os.path.join("Assets/Sprites/Screens", "CreditsBg.png"))
+EXIT_BUTTON = pygame.image.load(os.path.join("Assets/Sprites/Screens/Botones", "exit.png"))
 
 class Credits(Screen):
     def __init__(self, w, h, win, controller):
         super().__init__(w, h, win)
-        self.bg = pygame.image.load(os.path.join("Assets/Sprites/Screens", "CreditsBg.png"))
+        self.bg = BG_IMAGE
         self.bg.set_clip(pygame.Rect(0, 0, 1080, 720))
         self.image = self.bg.subsurface(self.bg.get_clip())
         self.rect = self.image.get_rect()
@@ -18,7 +20,7 @@ class Credits(Screen):
         self.controller = controller
         self.clock = pygame.time.Clock()
         self.salidaPos = (940, 0)
-        self.salida = pygame.image.load(os.path.join("Assets/Sprites/Screens/botones", "exit.png"))
+        self.salida = EXIT_BUTTON
         self.salida = pygame.transform.scale(self.salida, (135, 58))
 
     def start(self):
@@ -35,7 +37,7 @@ class Credits(Screen):
                         self.controller.change(State.MENU)
                         print("Salida")
         Scroll = True
-        if Scroll == True and self.rect.y > -4000:
+        if Scroll == True and self.rect.y > -3500:
             self.clip(self.states)
             self.rect.y -= 5
         else:

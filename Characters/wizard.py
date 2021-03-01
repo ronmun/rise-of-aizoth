@@ -10,7 +10,6 @@ files = [f for f in listdir (path) if isfile (join (path, f))]
 
 imgs = []
 for f in files:
-	print (f)
 	imgs.append (
 		pygame.transform.scale (
 			pygame.image.load (join (path, f)),
@@ -28,9 +27,11 @@ class Wizard (Entity):
 		self.health = self.max_health
 		self.vel = 1.25
 		self.regen_timer = 0
+		self.regenerated = False
 
 	def regen(self):
-		if self.health < self.max_health and int(self.regen_timer) == 5:
+		if self.health < self.max_health and int(self.regen_timer) == 5 and not self.regenerated:
+			self.regenerated = True
 			if self.health + 2.5 > self.max_health:
 				self.health = self.max_health
 			else:
@@ -41,3 +42,4 @@ class Wizard (Entity):
 		self.regen_timer += 0.025
 		if self.regen_timer > 5.1:
 			self.regen_timer = 0
+			self.regenerated = False
